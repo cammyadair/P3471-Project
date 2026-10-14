@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Two Stories — Assignment</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Inter:wght@300;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --max-width:1100px;
+      --gap:28px;
+      --radius:12px;
+      --transition:250ms ease;
+    }
+
+    /* Page layout */
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: #f6f7fb;
+      color:#111827;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:36px 18px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+      display:grid;
+      grid-template-columns:1fr;
+      gap:var(--gap);
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:6px;
+    }
+    header h1{
+      margin:0;
+      font-size:1.25rem;
+      letter-spacing:0.2px;
+    }
+    .credit{
+      font-size:0.9rem;
+      color:#6b7280;
+    }
+
+    /* Stories layout */
+    .stories{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:var(--gap);
+    }
+
+    @media(min-width:980px){
+      .stories{
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .story{
+      background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.95));
+      border-radius:var(--radius);
+      box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      transition:transform var(--transition), box-shadow var(--transition);
+    }
+    .story:focus-within,
+    .story:hover{
+      transform:translateY(-6px);
+      box-shadow:0 12px 34px rgba(16,24,40,0.12);
+    }
+
+    /* Story: Sunrise (warm, magazine style) */
+    .story--sunrise{
+      --accent:#c2410c; /* warm orange */
+      font-family: "Merriweather", serif;
+      color:#111827;
+    }
+    .story--sunrise .eyebrow{
+      background:linear-gradient(90deg, rgba(194,65,12,0.12), rgba(249,115,22,0.06));
+      color:var(--accent);
+      padding:6px 10px;
+      display:inline-block;
+      border-radius:999px;
+      font-weight:700;
+      font-size:0. eightrem;
+      margin-bottom:6px;
+    }
+
+    .story--sunrise .media{
+      position:relative;
+      min-height:180px;
+      overflow:hidden;
+    }
+    .story--sunrise .media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter:saturate(1.05) contrast(1.03);
+    }
+
+    .story--sunrise .content{
+      padding:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.0), rgba(255,247,244,0.4));
+    }
+    .story--sunrise h2{
+      margin:2px 0 8px 0;
+      font-size:1.25rem;
+      color: #7c2d12;
+    }
+    .story--sunrise p.lead{
+      margin:0 0 12px 0;
+      font-size:0.98rem;
+      color:#3f3f3f;
+    }
+
+    /* Story: Midnight (cool, modern) */
+    .story--midnight{
+      --accent:#0ea5a4; /* teal */
+      font-family:Inter, system-ui, sans-serif;
+      color:#e6eef0;
+      background: linear-gradient(180deg,#06121a 0%, #071827 100%);
+    }
+    .story--midnight .content{
+      padding:18px;
+    }
+    .story--midnight .media{
+      position:relative;
+      min-height:180px;
+      background:linear-gradient(90deg, rgba(14,165,164,0.06), rgba(56,189,248,0.02));
+    }
+    .story--midnight .media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      opacity:0.95;
+      mix-blend-mode:screen;
+    }
+    .story--midnight h2{
+      margin:2px 0 8px 0;
+      font-size:1.25rem;
+      color:var(--accent);
+    }
+    .story--midnight p{
+      color: #cfe7ea;
+    }
+
+    /* Common article meta + interactions */
+    .meta{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      font-size:0.9rem;
+      color:#6b7280;
+      margin-bottom:8px;
+    }
+    .meta .author{ font-weight:600; color:inherit; }
+    .meta .readtime{ color:inherit; }
+
+    .body{
+      line-height:1.55;
+      font-size:0.95rem;
+      margin-bottom:14px;
+    }
+
+    .controls{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-top:auto;
+      padding:12px 18px;
+      border-top:1px solid rgba(0,0,0,0.04);
+      background:transparent;
+    }
+
+    .btn{
+      border:0;
+      background:transparent;
+      padding:8px 12px;
+      cursor:pointer;
+      border-radius:8px;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      transition:background var(--transition), transform var(--transition);
+      color:inherit;
+    }
+    .btn:hover{ transform:translateY(-2px); background:rgba(0,0,0,0.04); }
+    .btn--like.active{ font-weight:700; color:var(--accent); }
+
+    /* Quiz */
+    .quiz{
+      margin-top:12px;
+      padding:10px;
+      border-radius:10px;
+      background: rgba(0,0,0,0.03);
+      font-size:0.95rem;
+    }
+    .story--midnight .quiz{ background: rgba(255,255,255,0.02); }
+    .quiz .options{ display:flex; flex-direction:column; gap:8px; margin-top:8px; }
+    .quiz button{ text-align:left; padding:8px 10px; border-radius:8px; border:1px solid rgba(0,0,0,0.06); background:transparent; cursor:pointer; }
+    .story--midnight .quiz button{ border-color: rgba(255,255,255,0.06); color:inherit; }
+    .quiz .result{ margin-top:8px; font-weight:600; }
+
+    /* small utility */
+    .muted{ color:#6b7280; }
+    .small{ font-size:0.85rem; }
+    .embed-placeholder{ border-radius:8px; padding:10px; border:1px dashed rgba(0,0,0,0.06); background:rgba(255,255,255,0.6); color:#374151; font-size:0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <header>
+      <h1>Two Short Stories — Distinct Aesthetics</h1>
+      <div class="credit small">Designed for Assignment — Accessible & responsive</div>
+    </header>
+
+    <section class="stories" aria-label="Stories list">
+
+      <!-- Story 1: Sunrise (warm, magazine) -->
+      <article class="story story--sunrise" aria-labelledby="s1-title">
+        <div class="media" aria-hidden="false">
+          <img src="https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=1600&q=60&auto=format&fit=crop" alt="Sunrise over golden dunes" />
+        </div>
+
+        <div class="content">
+          <div class="eyebrow">Feature</div>
+          <h2 id="s1-title">The Day the Sea Turned Gold</h2>
+          <div class="meta" aria-hidden="false">
+            <div class="author">By Ava Marin</div>
+            <div class="muted">·</div>
+            <div class="readtime" data-words="432">Reading time: <span class="rt">--</span> min</div>
+          </div>
+
+          <p class="lead">When the fishermen woke that morning the water reflected the sky like molten copper. No one had seen anything like it.</p>
+
+          <div class="body" id="s1-body">
+            <p>The villagers gathered on the shore. Old nets hung limp, and children traced patterns in the wet sand that didn't match the usual tide marks. For reasons unknown, the sea had become a mirror of the sunrise — warm, brilliant, and impossible.</p>
+
+            <p>By noon, scientists arrived. They took samples, measured salinity, and asked questions that had no immediate answers. But for Anya, who had watched the horizon since she was a child, it felt like the ocean itself was telling a story she finally understood.</p>
+
+            <p>She walked into the surf as if stepping into a dream and realized how small a single life can feel against the vast turnings of water and light.</p>
+          </div>
+
+          <!-- Interactive: Like + Save -->
+          <div class="controls" aria-label="story one controls">
+            <button class="btn btn--like" data-story="s1" aria-pressed="false">♡ Like <span class="like-count">0</span></button>
+
+            <button class="btn btn--readmore" data-target="s1-body">Toggle summary</button>
+
+            <!-- Example embed insertion point (replace SRC with your embed URL) -->
+            <div style="margin-left:auto; display:flex; gap:10px; align-items:center;">
+              <!-- Placeholder: where you can embed a third-party interactive element -->
+              <div class="embed-placeholder small" title="Embed area">
+                Embed: map / audio / external interactive
+                <!-- Example iframe (commented): 
+                <iframe src="https://your-embed-url" width="300" height="80" style="border:0"></iframe>
+                -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Tiny quiz -->
+          <div class="quiz" data-quiz="s1" aria-label="quiz for story one">
+            <strong>Quick question</strong>
+            <div class="small muted">What did the sea look like?</div>
+            <div class="options">
+              <button data-answer="A">A — Silver</button>
+              <button data-answer="B">B — Gold</button>
+              <button data-answer="C">C — Green</button>
+            </div>
+            <div class="result" aria-live="polite"></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Story 2: Midnight (cool, modern) -->
+      <article class="story story--midnight" aria-labelledby="s2-title">
+        <div class="media">
+          <img src="https://images.unsplash.com/photo-1482192505345-5655af888cc4?w=1600&q=60&auto=format&fit=crop" alt="City skyline at night with neon reflections" />
+        </div>
+
+        <div class="content">
+          <div class="meta">
+            <div class="author">By Jonas Kei</div>
+            <div class="muted">·</div>
+            <div class="readtime" data-words="512">Reading time: <span class="rt">--</span> min</div>
+          </div>
+
+          <h2 id="s2-title">Signals in the Neon Rain</h2>
+
+          <div class="body" id="s2-body">
+            <p>Taxi lights blinked like distant stars, and the rain wrote new characters across the sidewalk. In the city, people moved with the rhythm of incoming messages and half-remembered melodies.</p>
+
+            <p>Alice clicked through feeds until the display went dark. Then, somewhere between a train stop and a coffee cart, she found a note folded into a book someone had left on the bench. It said, "We are here if you look up."</p>
+
+            <p>She looked up.</p>
+          </div>
+
+          <div class="controls" aria-label="story two controls">
+            <button class="btn btn--like" data-story="s2" aria-pressed="false">♡ Like <span class="like-count">0</span></button>
+
+            <button class="btn btn--readmore" data-target="s2-body">Toggle lines</button>
+
+            <button class="btn btn--share" aria-label="Share">Share</button>
+          </div>
+
+          <div class="quiz" data-quiz="s2">
+            <strong>Quick question</strong>
+            <div class="small muted">Where did Alice find the note?</div>
+            <div class="options">
+              <button data-answer="A">A — In a book on a bench</button>
+              <button data-answer="B">B — Under her pillow</button>
+              <button data-answer="C">C — On a coffee cup</button>
+            </div>
+            <div class="result" aria-live="polite"></div>
+          </div>
+
+        </div>
+      </article>
+    </section>
+
+    <footer style="margin-top:18px; font-size:0. ninerem; color:#6b7280;">
+      Tip: To embed your own interactive piece (e.g., a CodePen, a YouTube video, or an audio player), drop an iframe inside the embed-placeholder elements or inside each story's content area.
+    </footer>
+  </div>
+
+  <script>
+    // --- Utilities ---
+    function estimateReadTime(wordCount){
+      const wpm = 220;
+      return Math.max(1, Math.round(wordCount / wpm));
+    }
+
+    // Initialize read-times
+    document.querySelectorAll('.readtime').forEach(el=>{
+      const words = Number(el.dataset.words) || (el.closest('.story')?.querySelector('.body')?.innerText.split(/\s+/).length || 300);
+      el.querySelector('.rt').textContent = estimateReadTime(words);
+    });
+
+    // Like buttons with localStorage
+    document.querySelectorAll('.btn--like').forEach(btn=>{
+      const key = 'like_' + btn.dataset.story;
+      const countEl = btn.querySelector('.like-count');
+      let count = Number(localStorage.getItem(key + '_count') || 0);
+      let active = localStorage.getItem(key + '_active') === '1';
+      countEl.textContent = count;
+      if(active){ btn.classList.add('active'); btn.setAttribute('aria-pressed','true'); }
+
+      btn.addEventListener('click', ()=>{
+        active = !active;
+        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+        btn.classList.toggle('active', active);
+        if(active){ count += 1; } else { count = Math.max(0, count-1); }
+        countEl.textContent = count;
+        localStorage.setItem(key + '_count', count);
+        localStorage.setItem(key + '_active', active ? '1' : '0');
+      });
+    });
+
+    // Toggle read more / collapse (simple)
+    document.querySelectorAll('.btn--readmore').forEach(btn=>{
+      const targetId = btn.dataset.target;
+      const target = document.getElementById(targetId);
+      if(!target) return;
+      let collapsed = false;
+      btn.addEventListener('click', ()=>{
+        collapsed = !collapsed;
+        if(collapsed){
+          // Show only lead or first paragraph
+          const first = target.querySelector('p');
+          target.style.maxHeight = first ? (first.offsetHeight + 'px') : '3.4em';
+          target.style.overflow = 'hidden';
+          btn.textContent = 'Show all';
+        } else {
+          target.style.maxHeight = '';
+          target.style.overflow = '';
+          btn.textContent = 'Toggle summary';
+        }
+      });
+    });
+
+    // Quiz handling
+    document.querySelectorAll('.quiz').forEach(quiz=>{
+      const options = quiz.querySelectorAll('.options button');
+      const result = quiz.querySelector('.result');
+      options.forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          // simple answer logic based on story id
+          const story = quiz.closest('.story').classList.contains('story--sunrise') ? 's1' : 's2';
+          const correct = (story === 's1') ? 'B' : 'A';
+          // map the words back to choice keys by reading the visible letter (first char in text)
+          const choice = (btn.innerText.trim().slice(0,1) || '').toUpperCase();
+          if(choice === correct){
+            result.textContent = 'Correct!';
+            result.style.color = story === 's1' ? '#0f5132' : '#06b6d4';
+          } else {
+            result.textContent = 'Not quite — try again.';
+            result.style.color = '#b91c1c';
+          }
+        });
+      });
+    });
+
+    // Accessibility: ensure keyboard focus ring visible
+    document.body.addEventListener('keyup', (e)=>{
+      if(e.key === 'Tab') document.documentElement.style.scrollBehavior = 'smooth';
+    });
+  </script>
+</body>
+</html>
