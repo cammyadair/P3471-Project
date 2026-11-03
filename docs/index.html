@@ -4,10 +4,78 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>News Stories</title>
+  <style>
+    :root {
+      /* Add your cover photo later, for example: --cover-image: url("cover.jpg"); */
+      --cover-image: none;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    .story-navigation {
+      position: absolute;
+      z-index: 1;
+      top: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .story-navigation button {
+      padding: 0;
+      border: 0;
+      background: none;
+      color: white;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .story-navigation button[aria-pressed="true"] {
+      text-decoration: underline;
+      text-underline-offset: 0.25em;
+    }
+
+    .cover {
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      padding: 6rem 1.5rem 3rem;
+      color: white;
+      background-color: #444;
+      background-image: linear-gradient(transparent, rgb(0 0 0 / 65%)), var(--cover-image);
+      background-position: center;
+      background-size: cover;
+    }
+
+    .cover h1 {
+      margin: 0 0 1rem;
+    }
+
+    .standfirst {
+      max-width: 42rem;
+      margin: 0;
+    }
+
+    .story-body {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <nav aria-label="Choose a story">
+    <nav class="story-navigation" aria-label="Choose a story">
       <button type="button" id="story-1-button" aria-controls="story-1" aria-pressed="true">
         Britain and the Zionist Project
       </button>
@@ -19,15 +87,27 @@
 
   <main>
     <article id="story-1" aria-labelledby="story-1-title">
-      <h1 id="story-1-title">Britain and the Zionist Project </h1>
-      <p>Add your opening paragraph here.</p>
-      <p>Add the rest of your first story here.</p>
+      <section class="cover">
+        <div>
+          <h1 id="story-1-title">Britain and the Zionist Project</h1>
+          <p class="standfirst">Add a short standfirst introducing your first story.</p>
+        </div>
+      </section>
+      <div class="story-body">
+        <p>Add the rest of your first story here.</p>
+      </div>
     </article>
 
     <article id="story-2" aria-labelledby="story-2-title" hidden>
-      <h1 id="story-2-title">Pal*stine Act*on</h1>
-      <p>Add your opening paragraph here.</p>
-      <p>Add the rest of your second story here.</p>
+      <section class="cover">
+        <div>
+          <h1 id="story-2-title">Pal*stine Act*on</h1>
+          <p class="standfirst">Add a short standfirst introducing your second story.</p>
+        </div>
+      </section>
+      <div class="story-body">
+        <p>Add the rest of your second story here.</p>
+      </div>
     </article>
   </main>
 
