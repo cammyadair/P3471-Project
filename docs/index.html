@@ -1,1 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>News Stories</title>
+</head>
+<body>
+  <header>
+    <nav aria-label="Choose a story">
+      <button type="button" id="story-1-button" aria-controls="story-1" aria-pressed="true">
+        Story 1
+      </button>
+      <button type="button" id="story-2-button" aria-controls="story-2" aria-pressed="false">
+        Story 2
+      </button>
+    </nav>
+  </header>
 
+  <main>
+    <article id="story-1" aria-labelledby="story-1-title">
+      <h1 id="story-1-title">Story 1 headline</h1>
+      <p>Add your opening paragraph here.</p>
+      <p>Add the rest of your first story here.</p>
+    </article>
+
+    <article id="story-2" aria-labelledby="story-2-title" hidden>
+      <h1 id="story-2-title">Story 2 headline</h1>
+      <p>Add your opening paragraph here.</p>
+      <p>Add the rest of your second story here.</p>
+    </article>
+  </main>
+
+  <script>
+    const storyButtons = [
+      document.getElementById('story-1-button'),
+      document.getElementById('story-2-button')
+    ];
+    const stories = [
+      document.getElementById('story-1'),
+      document.getElementById('story-2')
+    ];
+
+    storyButtons.forEach((button, index) => {
+      button.addEventListener('click', () => {
+        stories.forEach((story, storyIndex) => {
+          story.hidden = storyIndex !== index;
+          storyButtons[storyIndex].setAttribute('aria-pressed', String(storyIndex === index));
+        });
+      });
+    });
+  </script>
+</body>
+</html>
