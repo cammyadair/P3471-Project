@@ -3,11 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>News Stories</title>
+  <title>Stories</title>
   <style>
     :root {
-      /* Add your cover photo later, for example: --cover-image: url("cover.jpg"); */
       --cover-image: none;
+      --ink: #20201e;
+      --muted: #65635f;
+      --paper: #f5f3ee;
+      --accent: #8b3027;
     }
 
     * {
@@ -16,7 +19,13 @@
 
     body {
       margin: 0;
+      color: var(--ink);
+      background: var(--paper);
       font-family: sans-serif;
+    }
+
+    button {
+      font: inherit;
     }
 
     .story-navigation {
@@ -27,19 +36,116 @@
       right: 1.5rem;
       display: flex;
       gap: 1.5rem;
+      align-items: center;
     }
 
-    .story-navigation button {
+    .story-navigation[hidden] {
+      display: none;
+    }
+
+    .story-navigation button,
+    .story-link {
       padding: 0;
       border: 0;
       background: none;
       color: white;
-      font: inherit;
       text-align: left;
       cursor: pointer;
+      text-decoration: none;
     }
 
-    .story-navigation button[aria-pressed="true"] {
+    .story-navigation button:hover,
+    .story-navigation button:focus-visible {
+      text-decoration: underline;
+      text-underline-offset: 0.25em;
+    }
+
+    .home-page {
+      min-height: 100vh;
+      padding: clamp(5rem, 12vh, 8rem) max(1.5rem, calc((100vw - 72rem) / 2)) 4rem;
+    }
+
+    .home-intro {
+      max-width: 48rem;
+      margin-bottom: 4rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 1rem;
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .home-intro h1 {
+      max-width: 13ch;
+      margin: 0 0 1.25rem;
+      font-family: Georgia, serif;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 400;
+      letter-spacing: -0.055em;
+      line-height: 0.98;
+    }
+
+    .home-intro > p:last-child {
+      max-width: 38rem;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .story-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .story-card {
+      min-height: 17rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      background: #e8e4dc;
+      border-top: 3px solid var(--accent);
+    }
+
+    .story-card:nth-child(2) {
+      background: #e4e6e2;
+      border-top-color: #3e6258;
+    }
+
+    .story-card h2 {
+      max-width: 18ch;
+      margin: 0 0 1rem;
+      font-family: Georgia, serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.7rem);
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    .story-card p {
+      max-width: 34rem;
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .story-link {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .story-card:nth-child(2) .story-link {
+      color: #31574d;
+    }
+
+    .story-link:hover,
+    .story-link:focus-visible {
       text-decoration: underline;
       text-underline-offset: 0.25em;
     }
@@ -61,42 +167,101 @@
       --cover-image: url("britainheadimage.png");
     }
 
-    .story-image {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
     .cover h1 {
+      max-width: 16ch;
       margin: 0 0 1rem;
+      font-family: Georgia, serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 400;
+      line-height: 1;
     }
 
     .standfirst {
       max-width: 42rem;
       margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .story-image {
+      display: block;
+      width: min(100% - 3rem, 70rem);
+      height: auto;
+      margin: 3rem auto 0;
     }
 
     .story-body {
       max-width: 42rem;
       margin: 0 auto;
-      padding: 2rem 1.5rem;
+      padding: 2rem 1.5rem 4rem;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 40rem) {
+      .home-page {
+        padding-right: 1.25rem;
+        padding-left: 1.25rem;
+      }
+
+      .home-intro {
+        margin-bottom: 2.5rem;
+      }
+
+      .story-list {
+        grid-template-columns: 1fr;
+      }
+
+      .story-card {
+        min-height: 14rem;
+      }
+
+      .story-navigation {
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .story-navigation button {
+        font-size: 0.95rem;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <nav class="story-navigation" aria-label="Choose a story">
-      <button type="button" id="story-1-button" aria-controls="story-1" aria-pressed="true">
-        Britain and the Zionist Project
-      </button>
-      <button type="button" id="story-2-button" aria-controls="story-2" aria-pressed="false">
-        Pal*stine Act*on
-      </button>
-    </nav>
-  </header>
+  <nav class="story-navigation" id="story-navigation" aria-label="Story navigation" hidden>
+    <button type="button" id="home-button">Home</button>
+    <button type="button" id="other-story-button">Read the other story</button>
+  </nav>
 
   <main>
-    <article id="story-1" aria-labelledby="story-1-title">
+    <section class="home-page" id="home" aria-labelledby="home-title">
+      <div class="home-intro">
+        <p class="eyebrow">A collection of stories</p>
+        <h1 id="home-title">Explore the stories</h1>
+        <p>Choose a story to begin reading. You can return here or move directly to the other story at any time.</p>
+      </div>
+
+      <div class="story-list" aria-label="Choose a story">
+        <article class="story-card">
+          <p class="eyebrow">Story one</p>
+          <h2>Britain and the Zionist Project</h2>
+          <p>Add a short introduction to this story.</p>
+          <button class="story-link" type="button" data-open-story="0">Read this story <span aria-hidden="true">→</span></button>
+        </article>
+        <article class="story-card">
+          <p class="eyebrow">Story two</p>
+          <h2>Pal*stine Act*on</h2>
+          <p>Add a short introduction to this story.</p>
+          <button class="story-link" type="button" data-open-story="1">Read this story <span aria-hidden="true">→</span></button>
+        </article>
+      </div>
+    </section>
+
+    <article id="story-1" aria-labelledby="story-1-title" hidden>
       <section class="cover">
         <div>
           <h1 id="story-1-title">Britain and the Zionist Project</h1>
@@ -123,23 +288,39 @@
   </main>
 
   <script>
-    const storyButtons = [
-      document.getElementById('story-1-button'),
-      document.getElementById('story-2-button')
-    ];
+    const home = document.getElementById('home');
+    const navigation = document.getElementById('story-navigation');
     const stories = [
       document.getElementById('story-1'),
       document.getElementById('story-2')
     ];
+    const otherStoryButton = document.getElementById('other-story-button');
 
-    storyButtons.forEach((button, index) => {
-      button.addEventListener('click', () => {
-        stories.forEach((story, storyIndex) => {
-          story.hidden = storyIndex !== index;
-          storyButtons[storyIndex].setAttribute('aria-pressed', String(storyIndex === index));
-        });
-      });
+    function showHome() {
+      home.hidden = false;
+      stories.forEach((story) => { story.hidden = true; });
+      navigation.hidden = true;
+      document.title = 'Stories';
+      document.getElementById('home-title').focus({ preventScroll: true });
+      window.scrollTo(0, 0);
+    }
+
+    function showStory(index) {
+      home.hidden = true;
+      stories.forEach((story, storyIndex) => { story.hidden = storyIndex !== index; });
+      navigation.hidden = false;
+      otherStoryButton.dataset.storyIndex = String(1 - index);
+      otherStoryButton.textContent = `Read ${index === 0 ? 'Pal*stine Act*on' : 'Britain and the Zionist Project'}`;
+      document.title = `${index === 0 ? 'Britain and the Zionist Project' : 'Pal*stine Act*on'} | Stories`;
+      window.scrollTo(0, 0);
+    }
+
+    document.querySelectorAll('[data-open-story]').forEach((button) => {
+      button.addEventListener('click', () => showStory(Number(button.dataset.openStory)));
     });
+
+    document.getElementById('home-button').addEventListener('click', showHome);
+    otherStoryButton.addEventListener('click', () => showStory(Number(otherStoryButton.dataset.storyIndex)));
   </script>
 </body>
 </html>
