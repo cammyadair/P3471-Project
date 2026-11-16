@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#111111">
-  <title>Stories</title>
+  <title>Stories | P3471 Creative Project</title>
   <style>
     :root {
       --ink: #111111;
@@ -21,7 +21,6 @@
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -68,16 +67,27 @@
 
     .home-page {
       min-height: 100vh;
-      padding: clamp(5rem, 11vh, 7.5rem) max(1.5rem, calc((100vw - var(--page-width)) / 2)) 5rem;
-      background:
-        linear-gradient(135deg, #111 0%, #111 40%, #171716 40%, #171716 100%);
+      padding: clamp(4rem, 9vh, 7rem) max(1.5rem, calc((100vw - var(--page-width)) / 2)) 5rem;
+      background: linear-gradient(135deg, #111 0%, #111 40%, #171716 40%, #171716 100%);
       color: var(--muted);
     }
 
     .home-intro {
+      position: relative;
       max-width: 60rem;
       margin: 0 auto 3rem;
-      padding: 0.5rem 0;
+      padding: 1.4rem 0 1.5rem 1.5rem;
+      border-left: 6px solid var(--accent);
+    }
+
+    .home-intro::after {
+      position: absolute;
+      top: 0;
+      left: -6px;
+      width: min(18rem, 46vw);
+      height: 6px;
+      background: var(--accent-2);
+      content: '';
     }
 
     .eyebrow {
@@ -90,23 +100,24 @@
     }
 
     .home-intro h1 {
-      max-width: 10ch;
+      max-width: 28ch;
       margin: 0 0 1.25rem;
-      font-family: var(--serif);
-      font-size: clamp(3.3rem, 9vw, 7rem);
-      font-weight: 700;
-      letter-spacing: -0.075em;
-      line-height: 0.9;
+      font-family: var(--sans);
+      font-size: clamp(1.15rem, 2.5vw, 1.8rem);
+      font-weight: 800;
+      letter-spacing: 0.055em;
+      line-height: 1.2;
       color: #f7f1e8;
       text-transform: uppercase;
+      text-wrap: balance;
     }
 
     .home-intro > p:last-child {
-      max-width: 38rem;
+      max-width: 52rem;
       margin: 0;
-      color: rgb(247 241 232 / 78%);
-      font-size: 1.05rem;
-      line-height: 1.7;
+      color: rgb(247 241 232 / 82%);
+      font-size: clamp(1rem, 1.7vw, 1.15rem);
+      line-height: 1.75;
     }
 
     .story-list {
@@ -345,7 +356,7 @@
 
     @media (max-width: 40rem) {
       .home-page { padding-right: 1.2rem; padding-left: 1.2rem; }
-      .home-intro { margin-bottom: 2.5rem; }
+      .home-intro { margin-bottom: 2.5rem; padding-left: 1rem; }
       .story-list { grid-template-columns: 1fr; }
       .story-card { min-height: 17rem; box-shadow: 8px 8px 0 #000; }
       .cover { min-height: 78svh; padding: 6rem 1.2rem 6rem; }
@@ -376,11 +387,11 @@
 
   <main>
     <section class="home-page" id="home" aria-labelledby="home-title">
-      <div class="home-intro">
-        <p class="eyebrow">A collection of stories</p>
-        <h1 id="home-title">Explore the stories</h1>
-        <p>Choose a story to begin reading. You can return here or move directly to the other story at any time.</p>
-      </div>
+      <header class="home-intro">
+        <p class="eyebrow">Creative project · P3471</p>
+        <h1 id="home-title">P3471: Digital Tools and Data Journalism — Creative Project</h1>
+        <p>Britain’s relationship with Israel is long and complex, shaped by political decisions at home and abroad. This project examines Britain’s role in advancing Zionist aspirations and explores how people in Britain have challenged the country’s involvement in arming Israel amid its genocide of Palestinians.</p>
+      </header>
 
       <div class="story-list" aria-label="Choose a story">
         <article class="story-card">
@@ -436,7 +447,7 @@
       home.hidden = false;
       stories.forEach((story) => { story.hidden = true; });
       navigation.hidden = true;
-      document.title = 'Stories';
+      document.title = 'Stories | P3471 Creative Project';
       document.getElementById('home-title').focus({ preventScroll: true });
       window.scrollTo(0, 0);
     }
