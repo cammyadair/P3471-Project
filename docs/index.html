@@ -163,8 +163,83 @@
       background-size: cover;
     }
 
+    #story-1 {
+      --story-ink: #14213d;
+      --story-muted: #596273;
+      --story-paper: #f3f4f6;
+      --story-red: #8f1d2c;
+      color: var(--story-ink);
+      background: var(--story-paper);
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+
     #story-1 .cover {
-      --cover-image: url("britainheadimage.png");
+      --cover-image: linear-gradient(110deg, rgba(13, 35, 72, 0.84), rgba(13, 35, 72, 0.25)), url("britainheadimage.png");
+      border-bottom: 0.5rem solid var(--story-red);
+    }
+
+    #story-1 .story-body {
+      border-left: 1px solid #c5cad3;
+      border-right: 1px solid #c5cad3;
+    }
+
+    #story-1 .story-body p {
+      color: var(--story-ink);
+    }
+
+    #story-2 {
+      --story-black: #111;
+      --story-red: #e1262f;
+      color: var(--story-black);
+      background: #fff;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+
+    #story-2 .cover {
+      position: relative;
+      overflow: hidden;
+      background-color: var(--story-black);
+      background-image: linear-gradient(125deg, transparent 0 63%, rgba(225, 38, 47, 0.95) 63% 70%, transparent 70%), linear-gradient(0deg, #111, #292929);
+      border-bottom: 0.75rem solid var(--story-red);
+    }
+
+    #story-2 .cover::before {
+      position: absolute;
+      top: 0;
+      right: 12%;
+      width: 0.35rem;
+      height: 100%;
+      background: var(--story-red);
+      content: '';
+      transform: skew(-25deg);
+    }
+
+    #story-2 .cover > div {
+      position: relative;
+      z-index: 1;
+      max-width: 52rem;
+      padding-left: 1.5rem;
+      border-left: 0.4rem solid var(--story-red);
+    }
+
+    #story-2 .cover h1 {
+      max-width: 14ch;
+      font-style: italic;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    #story-2 .standfirst {
+      color: #e6e6e6;
+    }
+
+    #story-2 .story-body {
+      border-top: 0.4rem solid var(--story-red);
+    }
+
+    #story-2 .story-body p {
+      padding-left: 1.25rem;
+      border-left: 2px solid #d5d5d5;
     }
 
     .cover h1 {
