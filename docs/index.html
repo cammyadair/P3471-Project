@@ -3,15 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f4f0e8">
+  <meta name="theme-color" content="#111111">
   <title>Stories</title>
   <style>
     :root {
-      --ink: #20201e;
-      --muted: #65635f;
-      --paper: #f4f0e8;
-      --accent: #8b3027;
+      --ink: #111111;
+      --muted: #f0ede6;
+      --paper: #f1efe9;
+      --card: #e7e0d5;
+      --accent: #d63a2a;
+      --accent-2: #ffb703;
+      --charcoal: #0f0f10;
+      --panel: #f7f4ee;
       --serif: Georgia, 'Times New Roman', serif;
+      --sans: Arial, Helvetica, sans-serif;
       --page-width: 76rem;
     }
 
@@ -23,14 +28,14 @@
       margin: 0;
       color: var(--ink);
       background: var(--paper);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: var(--sans);
     }
 
     button { font: inherit; }
 
     .story-navigation {
       position: fixed;
-      z-index: 5;
+      z-index: 100;
       top: 1rem;
       left: 1rem;
       right: 1rem;
@@ -43,133 +48,132 @@
     .story-navigation[hidden] { display: none; }
 
     .story-navigation button {
-      padding: 0.7rem 1rem;
-      border: 1px solid rgb(255 255 255 / 28%);
-      border-radius: 999px;
-      background: rgb(20 23 27 / 68%);
+      padding: 0.8rem 1rem;
+      border: 2px solid rgb(255 255 255 / 24%);
+      background: rgb(17 17 17 / 74%);
       color: white;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       cursor: pointer;
       pointer-events: auto;
-      backdrop-filter: blur(12px);
-      transition: background 180ms ease, transform 180ms ease;
+      transition: transform 180ms ease, background 180ms ease;
     }
 
     .story-navigation button:hover,
     .story-navigation button:focus-visible {
-      background: #20201e;
+      background: #000;
       transform: translateY(-2px);
     }
 
     .home-page {
       min-height: 100vh;
-      padding: clamp(5rem, 11vh, 8rem) max(1.5rem, calc((100vw - var(--page-width)) / 2)) 6rem;
+      padding: clamp(5rem, 11vh, 7.5rem) max(1.5rem, calc((100vw - var(--page-width)) / 2)) 5rem;
       background:
-        radial-gradient(ellipse at 92% 9%, rgb(196 165 119 / 18%), transparent 32rem),
-        var(--paper);
+        linear-gradient(135deg, #111 0%, #111 40%, #171716 40%, #171716 100%);
+      color: var(--muted);
     }
 
     .home-intro {
-      max-width: 52rem;
-      margin: 0 auto 4rem;
+      max-width: 60rem;
+      margin: 0 auto 3rem;
+      padding: 0.5rem 0;
     }
 
     .eyebrow {
       margin: 0 0 1rem;
-      color: var(--accent);
-      font-size: 0.75rem;
-      font-weight: 750;
-      letter-spacing: 0.16em;
+      color: var(--accent-2);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
     }
 
     .home-intro h1 {
-      max-width: 12ch;
+      max-width: 10ch;
       margin: 0 0 1.25rem;
       font-family: var(--serif);
-      font-size: clamp(3.5rem, 9vw, 7.5rem);
-      font-weight: 400;
-      letter-spacing: -0.065em;
-      line-height: 0.92;
+      font-size: clamp(3.3rem, 9vw, 7rem);
+      font-weight: 700;
+      letter-spacing: -0.075em;
+      line-height: 0.9;
+      color: #f7f1e8;
+      text-transform: uppercase;
     }
 
     .home-intro > p:last-child {
-      max-width: 39rem;
+      max-width: 38rem;
       margin: 0;
-      color: var(--muted);
-      font-size: clamp(1.05rem, 2vw, 1.2rem);
-      line-height: 1.75;
+      color: rgb(247 241 232 / 78%);
+      font-size: 1.05rem;
+      line-height: 1.7;
     }
 
     .story-list {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.25rem;
+      gap: 1rem;
       max-width: var(--page-width);
       margin: 0 auto;
     }
 
     .story-card {
       position: relative;
-      min-height: 22rem;
+      min-height: 19rem;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       justify-content: flex-end;
       overflow: hidden;
-      padding: clamp(1.75rem, 5vw, 3rem);
-      border: 1px solid rgb(32 32 30 / 9%);
-      border-radius: 1.25rem;
-      background: linear-gradient(145deg, #e8dfd1, #ded4c5);
-      box-shadow: 0 1.25rem 3rem rgb(55 43 29 / 8%);
-      transition: transform 220ms ease, box-shadow 220ms ease;
+      padding: 1.6rem 1.5rem 1.5rem;
+      border: 3px solid #111;
+      background: linear-gradient(145deg, #f0ebdf, #d9d0c3);
+      box-shadow: 12px 12px 0 #000;
+      transition: transform 180ms ease, box-shadow 180ms ease;
     }
 
-    .story-card::after {
+    .story-card:nth-child(2) {
+      background: linear-gradient(145deg, #dfe8dd, #c6d1c6);
+      box-shadow: 12px 12px 0 #1e2a26;
+    }
+
+    .story-card::before {
       position: absolute;
-      top: -4rem;
-      right: -3rem;
-      width: 15rem;
-      height: 15rem;
-      border: 1px solid rgb(139 48 39 / 22%);
-      border-radius: 50%;
-      box-shadow: 0 0 0 1.5rem rgb(139 48 39 / 5%), 0 0 0 3rem rgb(139 48 39 / 4%);
+      top: 0;
+      right: 0;
+      width: 42%;
+      height: 100%;
+      background: linear-gradient(180deg, rgb(0 0 0 / 0%), rgb(0 0 0 / 14%));
       content: '';
       pointer-events: none;
     }
 
     .story-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 1.5rem 3.5rem rgb(55 43 29 / 14%);
-    }
-
-    .story-card:nth-child(2) {
-      background: linear-gradient(145deg, #dce5df, #cddbd3);
-    }
-
-    .story-card:nth-child(2)::after {
-      border-color: rgb(49 87 77 / 24%);
-      box-shadow: 0 0 0 1.5rem rgb(49 87 77 / 5%), 0 0 0 3rem rgb(49 87 77 / 4%);
+      transform: translate(-4px, -4px);
+      box-shadow: 16px 16px 0 #000;
     }
 
     .story-card h2 {
       position: relative;
       z-index: 1;
-      max-width: 18ch;
+      max-width: 15ch;
       margin: 0 0 1rem;
       font-family: var(--serif);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 400;
-      letter-spacing: -0.035em;
-      line-height: 1.04;
+      font-size: clamp(2.15rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: 0.98;
+      text-transform: uppercase;
     }
 
     .story-card p {
       position: relative;
       z-index: 1;
-      max-width: 34rem;
-      margin: 0 0 1.5rem;
-      color: #55524c;
-      line-height: 1.65;
+      max-width: 31rem;
+      margin: 0 0 1.4rem;
+      color: #2b2a28;
+      line-height: 1.6;
+      font-weight: 600;
     }
 
     .story-link {
@@ -179,21 +183,24 @@
       border: 0;
       background: none;
       color: var(--accent);
-      font-weight: 750;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       text-align: left;
       cursor: pointer;
     }
 
-    .story-card:nth-child(2) .story-link { color: #31574d; }
+    .story-card:nth-child(2) .story-link { color: #21463c; }
 
     .story-link span {
       display: inline-block;
-      margin-left: 0.25rem;
+      margin-left: 0.35rem;
+      transform: translateX(0);
       transition: transform 180ms ease;
     }
 
     .story-link:hover span,
-    .story-link:focus-visible span { transform: translateX(4px); }
+    .story-link:focus-visible span { transform: translateX(5px); }
 
     .story-link:hover,
     .story-link:focus-visible {
@@ -203,13 +210,13 @@
 
     .cover {
       position: relative;
-      min-height: 88vh;
-      min-height: 88svh;
+      min-height: 86vh;
+      min-height: 86svh;
       display: flex;
       align-items: flex-end;
-      padding: 7rem max(1.5rem, calc((100vw - var(--page-width)) / 2)) 8rem;
+      padding: 7rem max(1.5rem, calc((100vw - var(--page-width)) / 2)) 6rem;
       color: white;
-      background-color: #444;
+      background-color: #222;
       background-image: var(--cover-image);
       background-position: center;
       background-size: cover;
@@ -219,78 +226,81 @@
     .cover > div {
       position: relative;
       z-index: 1;
-      width: min(100%, 58rem);
-      margin: 0 auto;
-      animation: rise-in 700ms cubic-bezier(.2,.7,.2,1) both;
+      width: min(100%, 56rem);
+      animation: rise-in 700ms ease both;
     }
 
     .cover h1 {
-      max-width: 16ch;
+      max-width: 15ch;
       margin: 0 0 1rem;
       font-family: var(--serif);
-      font-size: clamp(3rem, 8vw, 6.5rem);
-      font-weight: 400;
-      letter-spacing: -0.055em;
-      line-height: 0.96;
-      text-wrap: balance;
-      text-shadow: 0 3px 24px rgb(0 0 0 / 28%);
+      font-size: clamp(3rem, 8vw, 6.25rem);
+      font-weight: 700;
+      letter-spacing: -0.065em;
+      line-height: 0.9;
+      text-transform: uppercase;
+      text-shadow: 0 6px 24px rgb(0 0 0 / 28%);
     }
 
     .standfirst {
-      max-width: 42rem;
+      max-width: 40rem;
       margin: 0;
-      color: rgb(255 255 255 / 90%);
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
-      line-height: 1.65;
-      text-shadow: 0 2px 14px rgb(0 0 0 / 35%);
+      color: rgb(255 255 255 / 92%);
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
+      line-height: 1.7;
+      font-weight: 600;
+      text-shadow: 0 2px 12px rgb(0 0 0 / 32%);
     }
 
     #story-1 {
-      --story-ink: #252a32;
-      --story-red: #8f1d2c;
+      --story-ink: #1d1d1d;
+      --story-red: #b32f2f;
       color: var(--story-ink);
-      background: #f3f1ec;
-      font-family: var(--serif);
+      background: #f1efe9;
+      font-family: Georgia, 'Times New Roman', serif;
     }
 
     #story-1 .cover {
-      --cover-image: linear-gradient(90deg, rgb(15 22 31 / 63%), rgb(15 22 31 / 14%) 75%), url("Map%20Outline%20Styling.png");
-      background-position: center 45%;
+      --cover-image: linear-gradient(90deg, rgb(10 10 10 / 70%), rgb(10 10 10 / 18%) 75%), url("Map%20Outline%20Styling.png");
+      background-position: center center;
+      background-color: #232323;
+      border-bottom: 0.5rem solid var(--story-red);
     }
 
     #story-1 .story-body {
+      background: #faf8f4;
       border-top: 4px solid var(--story-red);
     }
 
     #story-2 {
       --story-black: #111;
-      --story-red: #e1262f;
+      --story-red: #db2d2d;
       color: var(--story-black);
-      background: #f6f3ef;
-      font-family: var(--serif);
+      background: #f4f0ea;
+      font-family: Georgia, 'Times New Roman', serif;
     }
 
     #story-2 .cover {
       overflow: hidden;
       background-color: var(--story-black);
-      background-image: linear-gradient(125deg, transparent 0 63%, rgb(225 38 47 / 86%) 63% 70%, transparent 70%), linear-gradient(0deg, rgb(17 17 17 / 48%), rgb(41 41 41 / 24%)), url("PALACTHEADER.jpg");
+      background-image: linear-gradient(125deg, transparent 0 63%, rgb(219 45 45 / 92%) 63% 70%, transparent 70%), linear-gradient(0deg, rgb(17 17 17 / 52%), rgb(41 41 41 / 28%)), url("PALACTHEADER.jpg");
       border-bottom: 0.5rem solid var(--story-red);
     }
 
     #story-2 .cover::before {
       position: absolute;
       top: 0;
-      right: 12%;
-      width: 0.35rem;
+      right: 14%;
+      width: 0.45rem;
       height: 100%;
       background: var(--story-red);
       content: '';
-      transform: skew(-25deg);
+      transform: skew(-24deg);
     }
 
     #story-2 .cover > div {
-      padding-left: 1.5rem;
-      border-left: 0.4rem solid var(--story-red);
+      padding-left: 1.25rem;
+      border-left: 0.42rem solid var(--story-red);
     }
 
     #story-2 .cover h1 {
@@ -299,26 +309,31 @@
       font-weight: 700;
     }
 
-    #story-2 .story-body { border-top: 4px solid var(--story-red); }
+    #story-2 .story-body {
+      border-top: 4px solid var(--story-red);
+      background: #f9f7f3;
+    }
 
     .story-body {
       position: relative;
       z-index: 2;
-      max-width: 54rem;
+      max-width: 52rem;
       margin: -4.5rem auto 0;
       padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 7vw, 5rem) 5rem;
-      border-radius: 1.25rem 1.25rem 0 0;
-      background: #fffdfa;
-      box-shadow: 0 -1rem 3rem rgb(24 22 18 / 10%);
-      font-size: clamp(1.05rem, 2vw, 1.18rem);
+      border-radius: 1rem 1rem 0 0;
+      background: #fffdf9;
+      border: 3px solid #111;
+      border-bottom: 0;
+      box-shadow: 0 -1rem 0 rgb(17 17 17 / 100%);
+      font-size: clamp(1.08rem, 2vw, 1.2rem);
       line-height: 1.9;
     }
 
     .story-body p { margin: 0 0 1.5rem; }
 
     #story-2 .story-body p {
-      padding-left: 1.25rem;
-      border-left: 2px solid #d5d5d5;
+      padding-left: 1rem;
+      border-left: 2px solid #222;
     }
 
     [hidden] { display: none !important; }
@@ -329,13 +344,18 @@
     }
 
     @media (max-width: 40rem) {
-      .home-page { padding-right: 1.25rem; padding-left: 1.25rem; }
+      .home-page { padding-right: 1.2rem; padding-left: 1.2rem; }
       .home-intro { margin-bottom: 2.5rem; }
       .story-list { grid-template-columns: 1fr; }
-      .story-card { min-height: 18rem; }
-      .cover { min-height: 78svh; padding: 6rem 1.25rem 7rem; }
-      .story-body { margin-top: -3rem; padding: 2.25rem 1.4rem 4rem; border-radius: 1rem 1rem 0 0; }
-      .story-navigation button { padding: 0.65rem 0.85rem; font-size: 0.9rem; }
+      .story-card { min-height: 17rem; box-shadow: 8px 8px 0 #000; }
+      .cover { min-height: 78svh; padding: 6rem 1.2rem 6rem; }
+      .story-body {
+        margin-top: -2.6rem;
+        padding: 2rem 1.25rem 3rem;
+        border-radius: 0.7rem 0.7rem 0 0;
+        box-shadow: 0 -0.75rem 0 rgb(17 17 17 / 100%);
+      }
+      .story-navigation button { padding: 0.7rem 0.8rem; font-size: 0.78rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
