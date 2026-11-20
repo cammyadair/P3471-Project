@@ -6,320 +6,73 @@
   <meta name="theme-color" content="#ffffff">
   <title>Stories | P3471 Final Project</title>
   <style>
-    :root {
-      --ink: #20201f;
-      --paper: #fff;
-      --muted: #65635f;
-      --accent: #9c2f2a;
-      --serif: Georgia, 'Times New Roman', serif;
-      --sans: Arial, Helvetica, sans-serif;
-      --page-width: 76rem;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); }
-    button { font: inherit; }
-
-    .home-page {
-      min-height: 100vh;
-      padding: 1.6rem max(1.25rem, calc((100vw - var(--page-width)) / 2)) 3.5rem;
-      background: #fff;
-    }
-    .home-masthead {
-      margin: 0;
-      padding: .2rem 0 1.35rem;
-      border-bottom: 1px solid #dedbd5;
-      color: #595752;
-      font-size: .72rem;
-      font-weight: 600;
-      letter-spacing: .16em;
-      text-align: center;
-      text-transform: uppercase;
-    }
-    .home-intro {
-      max-width: 43rem;
-      min-height: clamp(20rem, 49vh, 34rem);
-      display: flex;
-      align-items: center;
-      margin: 0 auto;
-      padding: 3.25rem 1rem;
-    }
-    .home-intro p {
-      margin: 0;
-      font-family: var(--serif);
-      font-size: clamp(1.45rem, 3vw, 2.25rem);
-      line-height: 1.55;
-      letter-spacing: -.018em;
-      text-align: left;
-      text-wrap: pretty;
-    }
-    .story-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.25rem;
-      max-width: var(--page-width);
-      margin: 0 auto;
-    }
-    .story-card {
-      position: relative;
-      min-height: clamp(17rem, 34vh, 23rem);
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-end;
-      overflow: hidden;
-      padding: clamp(1.5rem, 4vw, 2.5rem);
-      color: white;
-      background-color: #292725;
-      background-position: center;
-      background-size: cover;
-      isolation: isolate;
-    }
-    .story-card::before {
-      position: absolute;
-      z-index: -1;
-      inset: 0;
-      background: linear-gradient(90deg, rgb(0 0 0 / 78%), rgb(0 0 0 / 38%) 72%), linear-gradient(0deg, rgb(0 0 0 / 40%), transparent 75%);
-      content: '';
-    }
-    .story-card--britain { background-image: url("Map%20Outline%20Styling.png"); }
-    .story-card--action { background-image: url("PALACTHEADER.jpg"); }
-    .story-label {
-      margin: 0 0 .75rem;
-      color: rgb(255 255 255 / 84%);
-      font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: .17em;
-      text-transform: uppercase;
-    }
-    .story-card h2 {
-      max-width: 17ch;
-      margin: 0 0 1rem;
-      font-family: var(--serif);
-      font-size: clamp(1.8rem, 3.5vw, 2.7rem);
-      font-weight: 500;
-      line-height: 1.05;
-    }
-    .story-card p:not(.story-label) {
-      max-width: 36rem;
-      margin: 0 0 1.35rem;
-      color: rgb(255 255 255 / 92%);
-      font-size: .96rem;
-      line-height: 1.65;
-    }
-    .story-link {
-      padding: 0 0 .25rem;
-      border: 0;
-      border-bottom: 1px solid rgb(255 255 255 / 70%);
-      background: none;
-      color: #fff;
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
-    .story-link:hover, .story-link:focus-visible { border-bottom-color: #fff; }
-
-    .story-navigation {
-      position: fixed;
-      z-index: 100;
-      top: 1rem;
-      left: 1rem;
-      right: 1rem;
-      display: flex;
-      justify-content: space-between;
-      gap: .75rem;
-      pointer-events: none;
-    }
-    .story-navigation[hidden] { display: none; }
-    .story-navigation button {
-      padding: .75rem .9rem;
-      border: 1px solid rgb(255 255 255 / 42%);
-      background: rgb(17 17 17 / 82%);
-      color: white;
-      font-size: .75rem;
-      font-weight: 700;
-      letter-spacing: .07em;
-      text-transform: uppercase;
-      cursor: pointer;
-      pointer-events: auto;
-    }
-    .cover {
-      position: relative;
-      min-height: 86vh;
-      min-height: 86svh;
-      display: flex;
-      align-items: flex-end;
-      padding: 7rem max(1.5rem, calc((100vw - var(--page-width)) / 2)) 6rem;
-      color: white;
-      background-color: #222;
-      background-image: var(--cover-image);
-      background-position: center;
-      background-size: cover;
-      isolation: isolate;
-    }
-    .cover > div { position: relative; z-index: 1; width: min(100%, 56rem); animation: rise-in 700ms ease both; }
-    .cover h1 {
-      max-width: 15ch;
-      margin: 0 0 1rem;
-      font-family: var(--serif);
-      font-size: clamp(3rem, 8vw, 6.25rem);
-      letter-spacing: -.065em;
-      line-height: .9;
-      text-transform: uppercase;
-      text-shadow: 0 6px 24px rgb(0 0 0 / 38%);
-    }
-    .standfirst { max-width: 40rem; margin: 0; color: rgb(255 255 255 / 94%); font-size: clamp(1.05rem, 2vw, 1.28rem); line-height: 1.7; font-weight: 600; }
-    #story-1 { color: #1d1d1d; background: #f1efe9; font-family: var(--serif); }
-    #story-1 .cover { --cover-image: linear-gradient(90deg, rgb(10 10 10 / 70%), rgb(10 10 10 / 18%) 75%), url("Map%20Outline%20Styling.png"); border-bottom: .5rem solid #b32f2f; }
-    #story-1 .story-body { border-top: 4px solid #b32f2f; background: #faf8f4; }
-    #story-2 { color: #111; background: #f4f0ea; font-family: var(--serif); }
-    #story-2 .cover { overflow: hidden; background-color: #111; background-image: linear-gradient(125deg, transparent 0 63%, rgb(219 45 45 / 72%) 63% 70%, transparent 70%), linear-gradient(0deg, rgb(17 17 17 / 58%), rgb(41 41 41 / 34%)), url("PALACTHEADER.jpg"); border-bottom: .5rem solid #db2d2d; }
-    #story-2 .story-body { border-top: 4px solid #db2d2d; background: #f9f7f3; }
-    .story-body {
-      position: relative;
-      z-index: 2;
-      max-width: 52rem;
-      margin: -4.5rem auto 0;
-      padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 7vw, 5rem) 5rem;
-      border-radius: 1rem 1rem 0 0;
-      background: #fffdf9;
-      border: 3px solid #111;
-      border-bottom: 0;
-      box-shadow: 0 -1rem 0 #111;
-      font-size: clamp(1.08rem, 2vw, 1.2rem);
-      line-height: 1.9;
-    }
-    .story-body p { margin: 0 0 1.5rem; }
-    .chart-slide { width: 100%; margin: 2.5rem 0 3rem; overflow: hidden; }
-    .chart-frame { width: 100%; opacity: 0; transform: translateX(-110vw); transition: transform 900ms cubic-bezier(.2,.7,.2,1), opacity 700ms ease; }
-    .chart-slide.is-visible .chart-frame { opacity: 1; transform: translateX(0); }
-    .chart-frame iframe { display: block; width: 100%; min-width: 100%; border: 0; }
-    [hidden] { display: none !important; }
-    @keyframes rise-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-    @media (max-width: 40rem) {
-      .home-page { padding: 1.2rem 1rem 2rem; }
-      .home-intro { min-height: 0; padding: 3.25rem .25rem; }
-      .home-intro p { font-size: clamp(1.35rem, 6vw, 1.8rem); }
-      .story-list { grid-template-columns: 1fr; gap: .85rem; }
-      .story-card { min-height: 18rem; }
-      .cover { min-height: 78svh; padding: 6rem 1.2rem; }
-      .story-body { margin-top: -2.6rem; padding: 2rem 1.25rem 3rem; border-radius: .7rem .7rem 0 0; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-      .chart-frame { opacity: 1; transform: none; }
-    }
+    :root{--ink:#20201f;--paper:#fff;--muted:#65635f;--accent:#9c2f2a;--serif:Georgia,'Times New Roman',serif;--sans:Arial,Helvetica,sans-serif;--page-width:76rem}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--paper);font-family:var(--sans)}button{font:inherit}
+    .home-page{min-height:100vh;padding:1.6rem max(1.25rem,calc((100vw - var(--page-width))/2)) 3.5rem;background:#fff}
+    .home-masthead{margin:0;padding:.2rem 0 1.35rem;border-bottom:1px solid #dedbd5;color:#595752;font-size:.72rem;font-weight:600;letter-spacing:.16em;text-align:center;text-transform:uppercase}
+    .home-intro{max-width:43rem;min-height:clamp(20rem,49vh,34rem);display:flex;align-items:center;margin:0 auto;padding:3.25rem 1rem}
+    .home-intro p{width:100%;margin:0;font-family:var(--serif);font-size:clamp(1.05rem,1.5vw,1.25rem);line-height:1.9;letter-spacing:0;text-align:justify;text-justify:inter-word;hyphens:auto;text-wrap:pretty}
+    .story-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem;max-width:var(--page-width);margin:0 auto}
+    .story-card{position:relative;min-height:clamp(17rem,34vh,23rem);display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;overflow:hidden;padding:clamp(1.5rem,4vw,2.5rem);color:#fff;background-color:#292725;background-position:center;background-size:cover;isolation:isolate}
+    .story-card::before{position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,rgb(0 0 0 / 78%),rgb(0 0 0 / 38%) 72%),linear-gradient(0deg,rgb(0 0 0 / 40%),transparent 75%);content:''}
+    .story-card--britain{background-image:url("Map%20Outline%20Styling.png")}.story-card--action{background-image:url("PALACTHEADER.jpg")}
+    .story-label{margin:0 0 .75rem;color:rgb(255 255 255 / 84%);font-size:.7rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase}
+    .story-card h2{max-width:17ch;margin:0 0 1rem;font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.7rem);font-weight:500;line-height:1.05}
+    .story-card p:not(.story-label){max-width:36rem;margin:0 0 1.35rem;color:rgb(255 255 255 / 92%);font-size:.96rem;line-height:1.65}
+    .story-link{padding:0 0 .25rem;border:0;border-bottom:1px solid rgb(255 255 255 / 70%);background:none;color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+    .story-link:hover,.story-link:focus-visible{border-bottom-color:#fff}
+    .story-navigation{position:fixed;z-index:100;top:1rem;left:1rem;right:1rem;display:flex;justify-content:space-between;gap:.75rem;pointer-events:none}
+    .story-navigation[hidden]{display:none}.story-navigation button{padding:.75rem .9rem;border:1px solid rgb(255 255 255 / 42%);background:rgb(17 17 17 / 82%);color:#fff;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;pointer-events:auto}
+    .cover{position:relative;min-height:86vh;min-height:86svh;display:flex;align-items:flex-end;padding:7rem max(1.5rem,calc((100vw - var(--page-width))/2)) 6rem;color:#fff;background-color:#222;background-image:var(--cover-image);background-position:center;background-size:cover;isolation:isolate}
+    .cover>div{position:relative;z-index:1;width:min(100%,56rem);animation:rise-in 700ms ease both}.cover h1{max-width:15ch;margin:0 0 1rem;font-family:var(--serif);font-size:clamp(3rem,8vw,6.25rem);letter-spacing:-.065em;line-height:.9;text-transform:uppercase;text-shadow:0 6px 24px rgb(0 0 0 / 38%)}
+    .standfirst{max-width:40rem;margin:0;color:rgb(255 255 255 / 94%);font-size:clamp(1.05rem,2vw,1.28rem);line-height:1.7;font-weight:600}
+    #story-1{color:#1d1d1d;background:#f1efe9;font-family:var(--serif)}#story-1 .cover{--cover-image:linear-gradient(90deg,rgb(10 10 10 / 70%),rgb(10 10 10 / 18%) 75%),url("Map%20Outline%20Styling.png");border-bottom:.5rem solid #b32f2f}#story-1 .story-body{border-top:4px solid #b32f2f;background:#faf8f4}
+    #story-2{color:#111;background:#f4f0ea;font-family:var(--serif)}#story-2 .cover{overflow:hidden;background-color:#111;background-image:linear-gradient(125deg,transparent 0 63%,rgb(219 45 45 / 72%) 63% 70%,transparent 70%),linear-gradient(0deg,rgb(17 17 17 / 58%),rgb(41 41 41 / 34%)),url("PALACTHEADER.jpg");border-bottom:.5rem solid #db2d2d}#story-2 .story-body{border-top:4px solid #db2d2d;background:#f9f7f3}
+    #story-2 .cover::before{position:absolute;top:0;right:14%;width:.45rem;height:100%;background:#db2d2d;content:'';transform:skew(-24deg)}#story-2 .cover>div{padding-left:1.25rem;border-left:.42rem solid #db2d2d}#story-2 .cover h1{max-width:14ch;font-style:italic;font-weight:700}
+    .story-body{position:relative;z-index:2;max-width:52rem;margin:-4.5rem auto 0;padding:clamp(2rem,6vw,4rem) clamp(1.5rem,7vw,5rem) 5rem;border-radius:1rem 1rem 0 0;background:#fffdf9;border:3px solid #111;border-bottom:0;box-shadow:0 -1rem 0 #111;font-size:clamp(1.08rem,2vw,1.2rem);line-height:1.9}
+    .story-body p{margin:0 0 1.5rem}.chart-slide{width:100%;margin:2.5rem 0 3rem;overflow:hidden}.chart-frame{width:100%;opacity:0;transform:translateX(-110vw);transition:transform 900ms cubic-bezier(.2,.7,.2,1),opacity 700ms ease}.chart-slide.is-visible .chart-frame{opacity:1;transform:translateX(0)}.chart-frame iframe{display:block;width:100%;min-width:100%;border:0}[hidden]{display:none!important}
+    @keyframes rise-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:40rem){.home-page{padding:1.2rem 1rem 2rem}.home-intro{min-height:0;padding:3.25rem .25rem}.home-intro p{font-size:1.05rem;line-height:1.8}.story-list{grid-template-columns:1fr;gap:.85rem}.story-card{min-height:18rem}.cover{min-height:78svh;padding:6rem 1.2rem}.story-body{margin-top:-2.6rem;padding:2rem 1.25rem 3rem;border-radius:.7rem .7rem 0 0}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.chart-frame{opacity:1;transform:none}}
   </style>
 </head>
 <body>
-  <nav class="story-navigation" id="story-navigation" aria-label="Story navigation" hidden>
-    <button type="button" id="home-button">Home</button>
-    <button type="button" id="other-story-button">Read the other story</button>
-  </nav>
+  <nav class="story-navigation" id="story-navigation" aria-label="Story navigation" hidden><button type="button" id="home-button">Home</button><button type="button" id="other-story-button">Read the other story</button></nav>
   <main>
     <section class="home-page" id="home" aria-labelledby="home-title">
       <p class="home-masthead" id="home-title">P3471 Final Project | 202340659</p>
-      <div class="home-intro">
-        <p>Britain’s relationship with Israel is long and complex, shaped by political decisions at home and abroad. This project examines Britain’s role in advancing Zionist aspirations and explores how people in Britain have challenged the country’s involvement in arming Israel amid its genocide of Palestinians.</p>
-      </div>
+      <div class="home-intro"><p>Britain’s relationship with Israel is long and complex, shaped by political decisions at home and abroad. This project examines Britain’s role in advancing Zionist aspirations and explores how people in Britain have challenged the country’s involvement in arming Israel amid its genocide of Palestinians.</p></div>
       <div class="story-list" aria-label="Choose a story">
-        <article class="story-card story-card--britain">
-          <p class="story-label">Story one</p>
-          <h2>Britain and the Zionist Project</h2>
-          <p>A comprehensive history of the UK's role in the creation of Israel and its complicity in the displacement and genocide of the Palestinian people.</p>
-          <button class="story-link" type="button" data-open-story="0">Read this story →</button>
-        </article>
-        <article class="story-card story-card--action">
-          <p class="story-label">Story two</p>
-          <h2>Pal*stine Act*on</h2>
-          <p>An overview of the now proscribed ‘terror group’ that took direct action against the Israeli war machine in Britain.</p>
-          <button class="story-link" type="button" data-open-story="1">Read this story →</button>
-        </article>
+        <article class="story-card story-card--britain"><p class="story-label">Story one</p><h2>Britain and the Zionist Project</h2><p>A comprehensive history of the UK's role in the creation of Israel and its complicity in the displacement and genocide of the Palestinian people.</p><button class="story-link" type="button" data-open-story="0">Read this story →</button></article>
+        <article class="story-card story-card--action"><p class="story-label">Story two</p><h2>Pal*stine Act*on</h2><p>An overview of the now proscribed ‘terror group’ that took direct action against the Israeli war machine in Britain.</p><button class="story-link" type="button" data-open-story="1">Read this story →</button></article>
       </div>
     </section>
     <article id="story-1" aria-labelledby="story-1-title" hidden>
-      <section class="cover">
-        <div>
-          <h1 id="story-1-title">Britain and the Zionist Project</h1>
-          <p class="standfirst">A comprehensive history of the UK's role in the creation of Israel and its complicity in the displacement and genocide of the Palestinian people.</p>
-        </div>
-      </section>
+      <section class="cover"><div><h1 id="story-1-title">Britain and the Zionist Project</h1><p class="standfirst">A comprehensive history of the UK's role in the creation of Israel and its complicity in the displacement and genocide of the Palestinian people.</p></div></section>
       <div class="story-body">
         <p>On 7 October 2023, Hamas, the paramilitary group that governs the Gaza Strip, launched an attack on Israel, killing around 1,200 people—primarily Israelis—and taking 240 people hostage. The events that followed have been catastrophic. Israeli military operations in Gaza have caused 175,834 injuries and 74,000 deaths; a further 1,100 people have been killed in the West Bank. These figures include nearly 22,000 children.</p>
-        <div class="chart-slide" id="gaza-chart">
-          <div class="chart-frame">
-            <iframe title="Gaza Death Toll" aria-label="Line chart" id="datawrapper-chart-CQjnf" src="https://datawrapper.dwcdn.net/CQjnf/1/" scrolling="no" frameborder="0" height="500" data-external="1"></iframe>
-          </div>
-        </div>
+        <div class="chart-slide" id="gaza-chart"><div class="chart-frame"><iframe title="Gaza Death Toll" aria-label="Line chart" id="datawrapper-chart-CQjnf" src="https://datawrapper.dwcdn.net/CQjnf/1/" scrolling="no" frameborder="0" height="500" data-external="1"></iframe></div></div>
         <p>On 16 September 2025, the UN Human Rights Council declared that Israel had committed acts of genocide. The ensuing crisis has prompted mass protests across the UK, where many have voiced anger at the government’s continued support for Israel. Media narratives often frame the conflict as having begun on 7 October 2023, a portrayal that obscures its history, which stretches back more than a century. This piece explores that history, including Britain’s involvement and its pivotal role in advancing Zionist aspirations and shaping the establishment of Israel.</p>
       </div>
     </article>
     <article id="story-2" aria-labelledby="story-2-title" hidden>
-      <section class="cover">
-        <div>
-          <h1 id="story-2-title">Pal*stine Act*on</h1>
-          <p class="standfirst">An overview of the now proscribed ‘terror group’ that took direct action against the Israeli war machine in Britain.</p>
-        </div>
-      </section>
+      <section class="cover"><div><h1 id="story-2-title">Pal*stine Act*on</h1><p class="standfirst">An overview of the now proscribed ‘terror group’ that took direct action against the Israeli war machine in Britain.</p></div></section>
       <div class="story-body"><p>Add the rest of your second story here.</p></div>
     </article>
   </main>
   <script>
-    const home = document.getElementById('home');
-    const navigation = document.getElementById('story-navigation');
-    const stories = [document.getElementById('story-1'), document.getElementById('story-2')];
-    const otherStoryButton = document.getElementById('other-story-button');
-    function showHome() {
-      home.hidden = false;
-      stories.forEach((story) => { story.hidden = true; });
-      navigation.hidden = true;
-      document.title = 'Stories | P3471 Final Project';
-      window.scrollTo(0, 0);
-    }
-    function showStory(index) {
-      home.hidden = true;
-      stories.forEach((story, storyIndex) => { story.hidden = storyIndex !== index; });
-      navigation.hidden = false;
-      otherStoryButton.dataset.storyIndex = String(1 - index);
-      otherStoryButton.textContent = `Read ${index === 0 ? 'Pal*stine Act*on' : 'Britain and the Zionist Project'}`;
-      document.title = `${index === 0 ? 'Britain and the Zionist Project' : 'Pal*stine Act*on'} | Stories`;
-      window.scrollTo(0, 0);
-      if (index === 0) observeChart();
-    }
-    document.querySelectorAll('[data-open-story]').forEach((button) => {
-      button.addEventListener('click', () => showStory(Number(button.dataset.openStory)));
-    });
-    document.getElementById('home-button').addEventListener('click', showHome);
-    otherStoryButton.addEventListener('click', () => showStory(Number(otherStoryButton.dataset.storyIndex)));
+    const home=document.getElementById('home');
+    const navigation=document.getElementById('story-navigation');
+    const stories=[document.getElementById('story-1'),document.getElementById('story-2')];
+    const otherStoryButton=document.getElementById('other-story-button');
+    function showHome(){home.hidden=false;stories.forEach((story)=>{story.hidden=true});navigation.hidden=true;document.title='Stories | P3471 Final Project';window.scrollTo(0,0)}
+    function showStory(index){home.hidden=true;stories.forEach((story,storyIndex)=>{story.hidden=storyIndex!==index});navigation.hidden=false;otherStoryButton.dataset.storyIndex=String(1-index);otherStoryButton.textContent=`Read ${index===0?'Pal*stine Act*on':'Britain and the Zionist Project'}`;document.title=`${index===0?'Britain and the Zionist Project':'Pal*stine Act*on'} | Stories`;window.scrollTo(0,0);if(index===0)observeChart()}
+    document.querySelectorAll('[data-open-story]').forEach((button)=>{button.addEventListener('click',()=>showStory(Number(button.dataset.openStory)))});
+    document.getElementById('home-button').addEventListener('click',showHome);
+    otherStoryButton.addEventListener('click',()=>showStory(Number(otherStoryButton.dataset.storyIndex)));
     let chartObserver;
-    function observeChart() {
-      const chart = document.getElementById('gaza-chart');
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
-        chart.classList.add('is-visible');
-        return;
-      }
-      if (chartObserver) chartObserver.disconnect();
-      chartObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            chart.classList.add('is-visible');
-            chartObserver.unobserve(chart);
-          }
-        });
-      }, { threshold: 0.15 });
-      chartObserver.observe(chart);
-    }
-    window.addEventListener('message', (event) => {
-      if (event.data && event.data['datawrapper-height'] !== undefined) {
-        const iframe = document.getElementById('datawrapper-chart-CQjnf');
-        const height = event.data['datawrapper-height'].CQjnf;
-        if (iframe && event.source === iframe.contentWindow && Number.isFinite(Number(height))) {
-          iframe.style.height = `${height}px`;
-        }
-      }
-    });
+    function observeChart(){const chart=document.getElementById('gaza-chart');if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver'in window)){chart.classList.add('is-visible');return}if(chartObserver)chartObserver.disconnect();chartObserver=new IntersectionObserver((entries)=>{entries.forEach((entry)=>{if(entry.isIntersecting){chart.classList.add('is-visible');chartObserver.unobserve(chart)}})},{threshold:.15});chartObserver.observe(chart)}
+    window.addEventListener('message',(event)=>{if(event.data&&event.data['datawrapper-height']!==undefined){const iframe=document.getElementById('datawrapper-chart-CQjnf');const height=event.data['datawrapper-height'].CQjnf;if(iframe&&event.source===iframe.contentWindow&&Number.isFinite(Number(height)))iframe.style.height=`${height}px`}});
   </script>
 </body>
 </html>
