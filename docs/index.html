@@ -8,374 +8,59 @@
   <style>
     :root {
       --ink: #111111;
-      --muted: #f0ede6;
       --paper: #f1efe9;
-      --card: #e7e0d5;
       --accent: #d63a2a;
       --accent-2: #ffb703;
-      --charcoal: #0f0f10;
-      --panel: #f7f4ee;
       --serif: Georgia, 'Times New Roman', serif;
       --sans: Arial, Helvetica, sans-serif;
       --page-width: 76rem;
     }
-
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: var(--paper);
-      font-family: var(--sans);
-    }
-
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); }
     button { font: inherit; }
-
-    .story-navigation {
-      position: fixed;
-      z-index: 100;
-      top: 1rem;
-      left: 1rem;
-      right: 1rem;
-      display: flex;
-      justify-content: space-between;
-      gap: 0.75rem;
-      pointer-events: none;
-    }
-
+    .story-navigation { position: fixed; z-index: 100; top: 1rem; left: 1rem; right: 1rem; display: flex; justify-content: space-between; gap: .75rem; pointer-events: none; }
     .story-navigation[hidden] { display: none; }
-
-    .story-navigation button {
-      padding: 0.8rem 1rem;
-      border: 2px solid rgb(255 255 255 / 24%);
-      background: rgb(17 17 17 / 74%);
-      color: white;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      pointer-events: auto;
-      transition: transform 180ms ease, background 180ms ease;
-    }
-
-    .story-navigation button:hover,
-    .story-navigation button:focus-visible {
-      background: #000;
-      transform: translateY(-2px);
-    }
-
-    .home-page {
-      min-height: 100vh;
-      padding: clamp(4rem, 9vh, 7rem) max(1.5rem, calc((100vw - var(--page-width)) / 2)) 5rem;
-      background: linear-gradient(135deg, #111 0%, #111 40%, #171716 40%, #171716 100%);
-      color: var(--muted);
-    }
-
-    .home-intro {
-      position: relative;
-      max-width: 60rem;
-      margin: 0 auto 3rem;
-      padding: 1.4rem 0 1.5rem 1.5rem;
-      border-left: 6px solid var(--accent);
-    }
-
-    .home-intro::after {
-      position: absolute;
-      top: 0;
-      left: -6px;
-      width: min(18rem, 46vw);
-      height: 6px;
-      background: var(--accent-2);
-      content: '';
-    }
-
-    .eyebrow {
-      margin: 0 0 1rem;
-      color: var(--accent-2);
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .home-intro h1 {
-      max-width: 28ch;
-      margin: 0 0 1.25rem;
-      font-family: var(--sans);
-      font-size: clamp(1.15rem, 2.5vw, 1.8rem);
-      font-weight: 800;
-      letter-spacing: 0.055em;
-      line-height: 1.2;
-      color: #f7f1e8;
-      text-transform: uppercase;
-      text-wrap: balance;
-    }
-
-    .home-intro > p:last-child {
-      max-width: 52rem;
-      margin: 0;
-      color: rgb(247 241 232 / 82%);
-      font-size: clamp(1rem, 1.7vw, 1.15rem);
-      line-height: 1.75;
-    }
-
-    .story-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
-      max-width: var(--page-width);
-      margin: 0 auto;
-    }
-
-    .story-card {
-      position: relative;
-      min-height: 19rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-end;
-      overflow: hidden;
-      padding: 1.6rem 1.5rem 1.5rem;
-      border: 3px solid #111;
-      background: linear-gradient(145deg, #f0ebdf, #d9d0c3);
-      box-shadow: 12px 12px 0 #000;
-      transition: transform 180ms ease, box-shadow 180ms ease;
-    }
-
-    .story-card:nth-child(2) {
-      background: linear-gradient(145deg, #dfe8dd, #c6d1c6);
-      box-shadow: 12px 12px 0 #1e2a26;
-    }
-
-    .story-card::before {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 42%;
-      height: 100%;
-      background: linear-gradient(180deg, rgb(0 0 0 / 0%), rgb(0 0 0 / 14%));
-      content: '';
-      pointer-events: none;
-    }
-
-    .story-card:hover {
-      transform: translate(-4px, -4px);
-      box-shadow: 16px 16px 0 #000;
-    }
-
-    .story-card h2 {
-      position: relative;
-      z-index: 1;
-      max-width: 15ch;
-      margin: 0 0 1rem;
-      font-family: var(--serif);
-      font-size: clamp(2.15rem, 4vw, 3rem);
-      font-weight: 700;
-      letter-spacing: -0.05em;
-      line-height: 0.98;
-      text-transform: uppercase;
-    }
-
-    .story-card p {
-      position: relative;
-      z-index: 1;
-      max-width: 31rem;
-      margin: 0 0 1.4rem;
-      color: #2b2a28;
-      line-height: 1.6;
-      font-weight: 600;
-    }
-
-    .story-link {
-      position: relative;
-      z-index: 1;
-      padding: 0;
-      border: 0;
-      background: none;
-      color: var(--accent);
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .story-card:nth-child(2) .story-link { color: #21463c; }
-
-    .story-link span {
-      display: inline-block;
-      margin-left: 0.35rem;
-      transform: translateX(0);
-      transition: transform 180ms ease;
-    }
-
-    .story-link:hover span,
-    .story-link:focus-visible span { transform: translateX(5px); }
-
-    .story-link:hover,
-    .story-link:focus-visible {
-      text-decoration: underline;
-      text-underline-offset: 0.25em;
-    }
-
-    .cover {
-      position: relative;
-      min-height: 86vh;
-      min-height: 86svh;
-      display: flex;
-      align-items: flex-end;
-      padding: 7rem max(1.5rem, calc((100vw - var(--page-width)) / 2)) 6rem;
-      color: white;
-      background-color: #222;
-      background-image: var(--cover-image);
-      background-position: center;
-      background-size: cover;
-      isolation: isolate;
-    }
-
-    .cover > div {
-      position: relative;
-      z-index: 1;
-      width: min(100%, 56rem);
-      animation: rise-in 700ms ease both;
-    }
-
-    .cover h1 {
-      max-width: 15ch;
-      margin: 0 0 1rem;
-      font-family: var(--serif);
-      font-size: clamp(3rem, 8vw, 6.25rem);
-      font-weight: 700;
-      letter-spacing: -0.065em;
-      line-height: 0.9;
-      text-transform: uppercase;
-      text-shadow: 0 6px 24px rgb(0 0 0 / 28%);
-    }
-
-    .standfirst {
-      max-width: 40rem;
-      margin: 0;
-      color: rgb(255 255 255 / 92%);
-      font-size: clamp(1.05rem, 2vw, 1.28rem);
-      line-height: 1.7;
-      font-weight: 600;
-      text-shadow: 0 2px 12px rgb(0 0 0 / 32%);
-    }
-
-    #story-1 {
-      --story-ink: #1d1d1d;
-      --story-red: #b32f2f;
-      color: var(--story-ink);
-      background: #f1efe9;
-      font-family: Georgia, 'Times New Roman', serif;
-    }
-
-    #story-1 .cover {
-      --cover-image: linear-gradient(90deg, rgb(10 10 10 / 70%), rgb(10 10 10 / 18%) 75%), url("Map%20Outline%20Styling.png");
-      background-position: center center;
-      background-color: #232323;
-      border-bottom: 0.5rem solid var(--story-red);
-    }
-
-    #story-1 .story-body {
-      background: #faf8f4;
-      border-top: 4px solid var(--story-red);
-    }
-
-    #story-2 {
-      --story-black: #111;
-      --story-red: #db2d2d;
-      color: var(--story-black);
-      background: #f4f0ea;
-      font-family: Georgia, 'Times New Roman', serif;
-    }
-
-    #story-2 .cover {
-      overflow: hidden;
-      background-color: var(--story-black);
-      background-image: linear-gradient(125deg, transparent 0 63%, rgb(219 45 45 / 92%) 63% 70%, transparent 70%), linear-gradient(0deg, rgb(17 17 17 / 52%), rgb(41 41 41 / 28%)), url("PALACTHEADER.jpg");
-      border-bottom: 0.5rem solid var(--story-red);
-    }
-
-    #story-2 .cover::before {
-      position: absolute;
-      top: 0;
-      right: 14%;
-      width: 0.45rem;
-      height: 100%;
-      background: var(--story-red);
-      content: '';
-      transform: skew(-24deg);
-    }
-
-    #story-2 .cover > div {
-      padding-left: 1.25rem;
-      border-left: 0.42rem solid var(--story-red);
-    }
-
-    #story-2 .cover h1 {
-      max-width: 14ch;
-      font-style: italic;
-      font-weight: 700;
-    }
-
-    #story-2 .story-body {
-      border-top: 4px solid var(--story-red);
-      background: #f9f7f3;
-    }
-
-    .story-body {
-      position: relative;
-      z-index: 2;
-      max-width: 52rem;
-      margin: -4.5rem auto 0;
-      padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 7vw, 5rem) 5rem;
-      border-radius: 1rem 1rem 0 0;
-      background: #fffdf9;
-      border: 3px solid #111;
-      border-bottom: 0;
-      box-shadow: 0 -1rem 0 rgb(17 17 17 / 100%);
-      font-size: clamp(1.08rem, 2vw, 1.2rem);
-      line-height: 1.9;
-    }
-
+    .story-navigation button { padding: .8rem 1rem; border: 2px solid rgb(255 255 255 / 24%); background: rgb(17 17 17 / 82%); color: white; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; pointer-events: auto; }
+    .home-page { min-height: 100vh; padding: clamp(4rem, 9vh, 7rem) max(1.5rem, calc((100vw - var(--page-width)) / 2)) 5rem; background: linear-gradient(135deg, #111 0%, #111 40%, #171716 40%, #171716 100%); color: #f0ede6; }
+    .home-intro { max-width: 60rem; margin: 0 auto 3rem; padding: 1.4rem 0 1.5rem 1.5rem; border-left: 6px solid var(--accent); }
+    .eyebrow { margin: 0 0 1rem; color: var(--accent-2); font-size: .72rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+    .home-intro h1 { margin: 0 0 1.25rem; color: #f7f1e8; font-size: clamp(1.15rem, 2.5vw, 1.8rem); line-height: 1.2; text-transform: uppercase; }
+    .home-intro > p:last-child { margin: 0; color: rgb(247 241 232 / 82%); font-size: clamp(1rem, 1.7vw, 1.15rem); line-height: 1.75; }
+    .story-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; max-width: var(--page-width); margin: 0 auto; }
+    .story-card { min-height: 19rem; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; padding: 1.6rem 1.5rem; border: 3px solid #111; background: linear-gradient(145deg, #f0ebdf, #d9d0c3); box-shadow: 12px 12px 0 #000; }
+    .story-card:nth-child(2) { background: linear-gradient(145deg, #dfe8dd, #c6d1c6); }
+    .story-card h2 { margin: 0 0 1rem; font-family: var(--serif); font-size: clamp(2.15rem, 4vw, 3rem); line-height: .98; text-transform: uppercase; }
+    .story-card p { max-width: 31rem; line-height: 1.6; font-weight: 600; }
+    .story-link { padding: 0; border: 0; background: none; color: var(--accent); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+    .cover { position: relative; min-height: 86vh; min-height: 86svh; display: flex; align-items: flex-end; padding: 7rem max(1.5rem, calc((100vw - var(--page-width)) / 2)) 6rem; color: white; background-color: #222; background-image: var(--cover-image); background-position: center; background-size: cover; isolation: isolate; }
+    .cover > div { position: relative; z-index: 1; width: min(100%, 56rem); animation: rise-in 700ms ease both; }
+    .cover h1 { max-width: 15ch; margin: 0 0 1rem; font-family: var(--serif); font-size: clamp(3rem, 8vw, 6.25rem); letter-spacing: -.065em; line-height: .9; text-transform: uppercase; text-shadow: 0 6px 24px rgb(0 0 0 / 28%); }
+    .standfirst { max-width: 40rem; margin: 0; color: rgb(255 255 255 / 92%); font-size: clamp(1.05rem, 2vw, 1.28rem); line-height: 1.7; font-weight: 600; }
+    #story-1 { color: #1d1d1d; background: #f1efe9; font-family: var(--serif); }
+    #story-1 .cover { --cover-image: linear-gradient(90deg, rgb(10 10 10 / 70%), rgb(10 10 10 / 18%) 75%), url("Map%20Outline%20Styling.png"); border-bottom: .5rem solid #b32f2f; }
+    #story-1 .story-body { border-top: 4px solid #b32f2f; background: #faf8f4; }
+    #story-2 { color: #111; background: #f4f0ea; font-family: var(--serif); }
+    #story-2 .cover { overflow: hidden; background-color: #111; background-image: linear-gradient(125deg, transparent 0 63%, rgb(219 45 45 / 92%) 63% 70%, transparent 70%), linear-gradient(0deg, rgb(17 17 17 / 52%), rgb(41 41 41 / 28%)), url("PALACTHEADER.jpg"); border-bottom: .5rem solid #db2d2d; }
+    #story-2 .story-body { border-top: 4px solid #db2d2d; background: #f9f7f3; }
+    .story-body { position: relative; z-index: 2; max-width: 52rem; margin: -4.5rem auto 0; padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 7vw, 5rem) 5rem; border-radius: 1rem 1rem 0 0; background: #fffdf9; border: 3px solid #111; border-bottom: 0; box-shadow: 0 -1rem 0 #111; font-size: clamp(1.08rem, 2vw, 1.2rem); line-height: 1.9; }
     .story-body p { margin: 0 0 1.5rem; }
-
-    #story-2 .story-body p {
-      padding-left: 1rem;
-      border-left: 2px solid #222;
-    }
-
+    .chart-slide { width: 100%; margin: 2.5rem 0 3rem; overflow: hidden; opacity: 0; transform: translateX(-110vw); transition: transform 900ms cubic-bezier(.2,.7,.2,1), opacity 700ms ease; }
+    .chart-slide.is-visible { opacity: 1; transform: translateX(0); }
+    .chart-slide iframe { display: block; width: 100%; min-width: 100%; border: 0; }
     [hidden] { display: none !important; }
-
-    @keyframes rise-in {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
+    @keyframes rise-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
     @media (max-width: 40rem) {
       .home-page { padding-right: 1.2rem; padding-left: 1.2rem; }
-      .home-intro { margin-bottom: 2.5rem; padding-left: 1rem; }
       .story-list { grid-template-columns: 1fr; }
-      .story-card { min-height: 17rem; box-shadow: 8px 8px 0 #000; }
-      .cover { min-height: 78svh; padding: 6rem 1.2rem 6rem; }
-      .story-body {
-        margin-top: -2.6rem;
-        padding: 2rem 1.25rem 3rem;
-        border-radius: 0.7rem 0.7rem 0 0;
-        box-shadow: 0 -0.75rem 0 rgb(17 17 17 / 100%);
-      }
-      .story-navigation button { padding: 0.7rem 0.8rem; font-size: 0.78rem; }
+      .story-card { min-height: 17rem; }
+      .cover { min-height: 78svh; padding: 6rem 1.2rem; }
+      .story-body { margin-top: -2.6rem; padding: 2rem 1.25rem 3rem; border-radius: .7rem .7rem 0 0; }
+      .story-navigation button { padding: .7rem .8rem; font-size: .78rem; }
     }
-
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .chart-slide { opacity: 1; transform: none; }
     }
   </style>
 </head>
@@ -384,7 +69,6 @@
     <button type="button" id="home-button">Home</button>
     <button type="button" id="other-story-button">Read the other story</button>
   </nav>
-
   <main>
     <section class="home-page" id="home" aria-labelledby="home-title">
       <header class="home-intro">
@@ -392,23 +76,21 @@
         <h1 id="home-title">P3471: Digital Tools and Data Journalism — Creative Project</h1>
         <p>Britain’s relationship with Israel is long and complex, shaped by political decisions at home and abroad. This project examines Britain’s role in advancing Zionist aspirations and explores how people in Britain have challenged the country’s involvement in arming Israel amid its genocide of Palestinians.</p>
       </header>
-
       <div class="story-list" aria-label="Choose a story">
         <article class="story-card">
           <p class="eyebrow">Story one</p>
           <h2>Britain and the Zionist Project</h2>
           <p>A comprehensive history of the UK's role in the creation of Israel and its complicity in the displacement and genocide of the Palestinian people.</p>
-          <button class="story-link" type="button" data-open-story="0">Read this story <span aria-hidden="true">→</span></button>
+          <button class="story-link" type="button" data-open-story="0">Read this story →</button>
         </article>
         <article class="story-card">
           <p class="eyebrow">Story two</p>
           <h2>Pal*stine Act*on</h2>
           <p>An overview of the now proscribed ‘terror group’ that took direct action against the Israeli war machine in Britain.</p>
-          <button class="story-link" type="button" data-open-story="1">Read this story <span aria-hidden="true">→</span></button>
+          <button class="story-link" type="button" data-open-story="1">Read this story →</button>
         </article>
       </div>
     </section>
-
     <article id="story-1" aria-labelledby="story-1-title" hidden>
       <section class="cover">
         <div>
@@ -417,10 +99,13 @@
         </div>
       </section>
       <div class="story-body">
-        <p>Add the rest of your first story here.</p>
+        <p>On 7 October 2023, Hamas, the paramilitary group that governs the Gaza Strip, launched an attack on Israel, killing around 1,200 people—primarily Israelis—and taking 240 people hostage. The events that followed have been catastrophic. Israeli military operations in Gaza have caused 175,834 injuries and 74,000 deaths; a further 1,100 people have been killed in the West Bank. These figures include nearly 22,000 children.</p>
+        <div class="chart-slide" id="gaza-chart">
+          <iframe title="Gaza Death Toll" aria-label="Line chart" id="datawrapper-chart-CQjnf" src="https://datawrapper.dwcdn.net/CQjnf/1/" scrolling="no" frameborder="0" height="500" data-external="1"></iframe>
+        </div>
+        <p>On 16 September 2025, the UN Human Rights Council declared that Israel had committed acts of genocide. The ensuing crisis has prompted mass protests across the UK, where many have voiced anger at the government’s continued support for Israel. Media narratives often frame the conflict as having begun on 7 October 2023, a portrayal that obscures its history, which stretches back more than a century. This piece explores that history, including Britain’s involvement and its pivotal role in advancing Zionist aspirations and shaping the establishment of Israel.</p>
       </div>
     </article>
-
     <article id="story-2" aria-labelledby="story-2-title" hidden>
       <section class="cover">
         <div>
@@ -428,30 +113,21 @@
           <p class="standfirst">An overview of the now proscribed ‘terror group’ that took direct action against the Israeli war machine in Britain.</p>
         </div>
       </section>
-      <div class="story-body">
-        <p>Add the rest of your second story here.</p>
-      </div>
+      <div class="story-body"><p>Add the rest of your second story here.</p></div>
     </article>
   </main>
-
   <script>
     const home = document.getElementById('home');
     const navigation = document.getElementById('story-navigation');
-    const stories = [
-      document.getElementById('story-1'),
-      document.getElementById('story-2')
-    ];
+    const stories = [document.getElementById('story-1'), document.getElementById('story-2')];
     const otherStoryButton = document.getElementById('other-story-button');
-
     function showHome() {
       home.hidden = false;
       stories.forEach((story) => { story.hidden = true; });
       navigation.hidden = true;
       document.title = 'Stories | P3471 Creative Project';
-      document.getElementById('home-title').focus({ preventScroll: true });
       window.scrollTo(0, 0);
     }
-
     function showStory(index) {
       home.hidden = true;
       stories.forEach((story, storyIndex) => { story.hidden = storyIndex !== index; });
@@ -460,14 +136,44 @@
       otherStoryButton.textContent = `Read ${index === 0 ? 'Pal*stine Act*on' : 'Britain and the Zionist Project'}`;
       document.title = `${index === 0 ? 'Britain and the Zionist Project' : 'Pal*stine Act*on'} | Stories`;
       window.scrollTo(0, 0);
+      if (index === 0) observeChart();
     }
-
     document.querySelectorAll('[data-open-story]').forEach((button) => {
       button.addEventListener('click', () => showStory(Number(button.dataset.openStory)));
     });
-
     document.getElementById('home-button').addEventListener('click', showHome);
     otherStoryButton.addEventListener('click', () => showStory(Number(otherStoryButton.dataset.storyIndex)));
+    let chartObserver;
+    function observeChart() {
+      const chart = document.getElementById('gaza-chart');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        chart.classList.add('is-visible');
+        return;
+      }
+      if (!('IntersectionObserver' in window)) {
+        chart.classList.add('is-visible');
+        return;
+      }
+      if (chartObserver) chartObserver.disconnect();
+      chartObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            chart.classList.add('is-visible');
+            chartObserver.unobserve(chart);
+          }
+        });
+      }, { threshold: 0.15 });
+      chartObserver.observe(chart);
+    }
+    window.addEventListener('message', (event) => {
+      if (event.data && event.data['datawrapper-height'] !== undefined) {
+        const iframe = document.getElementById('datawrapper-chart-CQjnf');
+        const height = event.data['datawrapper-height'].CQjnf;
+        if (iframe && event.source === iframe.contentWindow && Number.isFinite(Number(height))) {
+          iframe.style.height = `${height}px`;
+        }
+      }
+    });
   </script>
 </body>
 </html>
