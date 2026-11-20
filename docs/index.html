@@ -45,9 +45,11 @@
     #story-2 .story-body { border-top: 4px solid #db2d2d; background: #f9f7f3; }
     .story-body { position: relative; z-index: 2; max-width: 52rem; margin: -4.5rem auto 0; padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 7vw, 5rem) 5rem; border-radius: 1rem 1rem 0 0; background: #fffdf9; border: 3px solid #111; border-bottom: 0; box-shadow: 0 -1rem 0 #111; font-size: clamp(1.08rem, 2vw, 1.2rem); line-height: 1.9; }
     .story-body p { margin: 0 0 1.5rem; }
-    .chart-slide { width: 100%; margin: 2.5rem 0 3rem; overflow: hidden; opacity: 0; transform: translateX(-110vw); transition: transform 900ms cubic-bezier(.2,.7,.2,1), opacity 700ms ease; }
-    .chart-slide.is-visible { opacity: 1; transform: translateX(0); }
-    .chart-slide iframe { display: block; width: 100%; min-width: 100%; border: 0; }
+    /* Observe the chart in its natural position; animate only its inner frame. */
+    .chart-slide { width: 100%; margin: 2.5rem 0 3rem; overflow: hidden; }
+    .chart-frame { width: 100%; opacity: 0; transform: translateX(-110vw); transition: transform 900ms cubic-bezier(.2,.7,.2,1), opacity 700ms ease; }
+    .chart-slide.is-visible .chart-frame { opacity: 1; transform: translateX(0); }
+    .chart-frame iframe { display: block; width: 100%; min-width: 100%; border: 0; }
     [hidden] { display: none !important; }
     @keyframes rise-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
     @media (max-width: 40rem) {
@@ -60,7 +62,7 @@
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-      .chart-slide { opacity: 1; transform: none; }
+      .chart-frame { opacity: 1; transform: none; }
     }
   </style>
 </head>
@@ -101,7 +103,9 @@
       <div class="story-body">
         <p>On 7 October 2023, Hamas, the paramilitary group that governs the Gaza Strip, launched an attack on Israel, killing around 1,200 people—primarily Israelis—and taking 240 people hostage. The events that followed have been catastrophic. Israeli military operations in Gaza have caused 175,834 injuries and 74,000 deaths; a further 1,100 people have been killed in the West Bank. These figures include nearly 22,000 children.</p>
         <div class="chart-slide" id="gaza-chart">
-          <iframe title="Gaza Death Toll" aria-label="Line chart" id="datawrapper-chart-CQjnf" src="https://datawrapper.dwcdn.net/CQjnf/1/" scrolling="no" frameborder="0" height="500" data-external="1"></iframe>
+          <div class="chart-frame">
+            <iframe title="Gaza Death Toll" aria-label="Line chart" id="datawrapper-chart-CQjnf" src="https://datawrapper.dwcdn.net/CQjnf/1/" scrolling="no" frameborder="0" height="500" data-external="1"></iframe>
+          </div>
         </div>
         <p>On 16 September 2025, the UN Human Rights Council declared that Israel had committed acts of genocide. The ensuing crisis has prompted mass protests across the UK, where many have voiced anger at the government’s continued support for Israel. Media narratives often frame the conflict as having begun on 7 October 2023, a portrayal that obscures its history, which stretches back more than a century. This piece explores that history, including Britain’s involvement and its pivotal role in advancing Zionist aspirations and shaping the establishment of Israel.</p>
       </div>
@@ -146,11 +150,7 @@
     let chartObserver;
     function observeChart() {
       const chart = document.getElementById('gaza-chart');
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        chart.classList.add('is-visible');
-        return;
-      }
-      if (!('IntersectionObserver' in window)) {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
         chart.classList.add('is-visible');
         return;
       }
