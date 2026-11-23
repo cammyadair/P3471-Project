@@ -29,13 +29,15 @@
     #story-1{color:#1d1d1d;background:#f1efe9;font-family:var(--serif)}
     #story-1 .cover{--cover-image:linear-gradient(90deg,rgb(10 10 10 / 70%),rgb(10 10 10 / 18%) 75%),url("Map%20Outline%20Styling.png");border-bottom:.5rem solid #b32f2f;background-attachment:fixed}
     #story-1 .story-body{position:relative;z-index:3;width:100%;max-width:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(1.5rem,4vw,4rem);row-gap:0;margin:-3rem 0 0;padding:clamp(2rem,5vw,4.5rem) max(1.25rem,calc((100vw - 76rem)/2));border-top:4px solid #b32f2f;background:#faf8f4;box-shadow:0 -1.2rem 2rem rgb(0 0 0 / 12%);font-size:1.12rem;line-height:1.85}
-    .oxford-zionism-definition{grid-column:1/-1;margin:0 0 2.25rem;padding:1.5rem;border-left:4px solid #b32f2f;background:#fff}
-    .oxford-zionism-definition p{max-width:52rem;margin:0 0 1.25rem;font-size:1.12rem;line-height:1.85}
-    .oxford-zionism-definition img{display:block;width:min(100%,42rem);height:auto;margin:0 auto;border:1px solid #dedbd5}
+    .oxford-zionism-definition{grid-column:1/-1;grid-row:3;margin:0;padding:1.5rem;border-left:4px solid #b32f2f;background:#fff}
+    .oxford-zionism-definition p{max-width:52rem;margin:0;font-size:1.12rem;line-height:1.85}
+    .oxford-zionism-definition .definition-context{margin-bottom:1.25rem;color:var(--ink)}
+    .oxford-zionism-definition .definition-main{font-size:1.12rem}
+    .oxford-zionism-definition .definition-notes{margin-top:1.25rem;font-size:.78rem;line-height:1.55;color:#555}
     #story-1 .story-lead,#story-1 .story-second{font-size:1.12rem;line-height:1.85}
     #story-1 .story-lead{grid-column:1/-1;margin:0 0 2.5rem}
     #story-1 .chart-slide{grid-column:1;grid-row:2;align-self:start;margin:0;min-width:0}
-    #story-1 .story-second{grid-column:2;grid-row:2;margin:0;text-align:left}
+    #story-1 .story-second{grid-column:2;grid-row:2;margin:0 0 2.25rem;text-align:left}
     #story-2{color:#20201f;background:#fff;font-family:var(--sans)}
     .pa-masthead{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem max(1.25rem,calc((100vw - var(--page-width))/2));border-top:5px solid #a9252b;border-bottom:1px solid #dedede;background:#fff;color:#222}
     .pa-brand{font-size:clamp(1.15rem,2vw,1.65rem);font-weight:900;letter-spacing:.055em;text-transform:uppercase}.pa-edition{color:#666;font-size:.72rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;text-align:right}
@@ -47,7 +49,7 @@
     .pa-main-copy p{margin:0 0 1.5rem}.pa-sidebar{align-self:start;padding:1.2rem 0 1.2rem 1.25rem;border-left:3px solid #a9252b;font-family:var(--sans)}.pa-sidebar h2{margin:0 0 .7rem;font-size:.72rem;letter-spacing:.13em;text-transform:uppercase}.pa-sidebar p{margin:0;color:#555;font-size:.9rem;line-height:1.7}
     .chart-slide{width:100%;overflow:hidden}.chart-frame{width:100%;opacity:0;transform:translateX(-110vw);transition:transform 2.4s cubic-bezier(.2,.7,.2,1),opacity 1.8s ease}.chart-slide.is-visible .chart-frame{opacity:1;transform:translateX(0)}.chart-frame iframe{display:block;width:100%;min-width:100%;border:0}
     @keyframes rise-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-    @media(max-width:40rem){.home-page{padding:1.2rem 1rem 2rem}.home-intro{min-height:0;padding:3.25rem .25rem}.home-intro p{font-size:1.05rem;line-height:1.8}.story-list{grid-template-columns:1fr;gap:.85rem}.story-card{min-height:18rem}.cover{min-height:78svh;padding:6rem 1.2rem}#story-1 .cover{background-attachment:scroll}#story-1 .story-body{grid-template-columns:1fr;row-gap:1.5rem;margin-top:-2.6rem;padding:2rem 1.25rem 3rem}#story-1 .story-lead,#story-1 .chart-slide,#story-1 .story-second{grid-column:1;grid-row:auto}.oxford-zionism-definition{grid-column:1;margin-bottom:.5rem;padding:1rem}.pa-masthead{align-items:flex-start;flex-direction:column}.pa-edition{text-align:left}#story-2 .pa-cover{min-height:70svh;padding:7rem 1.25rem 3rem}#story-2 .story-body{grid-template-columns:1fr;gap:1.5rem;padding:2rem 1.25rem 3rem}.pa-sidebar{padding-top:.75rem;padding-bottom:.75rem}}
+    @media(max-width:40rem){.home-page{padding:1.2rem 1rem 2rem}.home-intro{min-height:0;padding:3.25rem .25rem}.home-intro p{font-size:1.05rem;line-height:1.8}.story-list{grid-template-columns:1fr;gap:.85rem}.story-card{min-height:18rem}.cover{min-height:78svh;padding:6rem 1.2rem}#story-1 .cover{background-attachment:scroll}#story-1 .story-body{grid-template-columns:1fr;row-gap:1.5rem;margin-top:-2.6rem;padding:2rem 1.25rem 3rem}#story-1 .story-lead,#story-1 .chart-slide,#story-1 .story-second,.oxford-zionism-definition{grid-column:1;grid-row:auto}.oxford-zionism-definition{margin-bottom:.5rem;padding:1rem}.pa-masthead{align-items:flex-start;flex-direction:column}.pa-edition{text-align:left}#story-2 .pa-cover{min-height:70svh;padding:7rem 1.25rem 3rem}#story-2 .story-body{grid-template-columns:1fr;gap:1.5rem;padding:2rem 1.25rem 3rem}.pa-sidebar{padding-top:.75rem;padding-bottom:.75rem}}
   </style>
 </head>
 <body>
@@ -65,13 +67,14 @@
     <article id="story-1" aria-labelledby="story-1-title" hidden>
       <section class="cover"><div><h1 id="story-1-title">Britain and the Zionist Project</h1><p class="standfirst">A comprehensive history of the UK's role in the creation of Israel and its complicity in the displacement and genocide of the Palestinian people.</p></div></section>
       <div class="story-body">
-        <div class="oxford-zionism-definition">
-          <p>Before we dive into the history of Britain and the Zionist Project, a quick definition of Zionism helps with understanding. Oxford English Dictionary provides an apt definition:</p>
-          <img src="oxfordzionismdef.png" alt="Oxford English Dictionary definition of Zionism">
-        </div>
         <p class="story-lead">On 7 October 2023, Hamas, the paramilitary group that governs the Gaza Strip, launched an attack on Israel, killing around 1,200 people—primarily Israelis—and taking 240 people hostage. The events that followed have been catastrophic. Israeli military operations in Gaza have caused more than 175,000 injuries and over 74,000 deaths; a further 1,100 people have been killed in the West Bank. These figures include nearly 22,000 children.</p>
         <div class="chart-slide" id="gaza-chart"><div class="chart-frame"><iframe title="Gaza Death Toll" aria-label="Line chart" id="datawrapper-chart-CQjnf" src="https://datawrapper.dwcdn.net/CQjnf/1/" scrolling="no" frameborder="0" height="500" data-external="1"></iframe></div></div>
         <p class="story-second">On 16 September 2025, following the onslaught in Gaza, the UN Human Rights Council declared that Israel had committed acts of genocide. The ensuing crisis has prompted mass protests across the UK, with many voicing anger at the government's support for Israel. Notably, media narratives often frame the conflict as beginning on 7 October 2023, a portrayal that obscures its history, which stretches back more than a century. This piece explores that history, discussing Britain's critical involvement in advancing Zionist aspirations and assisting the creation of the state of Israel, all of which led to the displacement of millions of Palestinians and, now, the “first live-streamed genocide in history”.</p>
+        <div class="oxford-zionism-definition">
+          <p class="definition-context">Before we dive into the history of Britain and the Zionist Project, a quick definition of Zionism helps with understanding. Oxford English Dictionary provides an apt definition:</p>
+          <p class="definition-main"><em>Zionism</em><br>Originally: a movement among Jewish people for the re-establishment of a Jewish nation in Palestine. Later: a movement for the development and protection of the state of Israel. Also: advocacy of or support for this.</p>
+          <p class="definition-notes">Zionism was established as a political movement in 1897 at the initiative of Theodor Herzl (1860–1904). The state of Israel was established in 1948.</p>
+        </div>
       </div>
     </article>
 
