@@ -37,6 +37,12 @@
     .story-signpost{grid-column:1/-1;grid-row:4;margin:2.25rem 0 0;padding:1.25rem 0;border-top:1px solid #bcb7ae;border-bottom:1px solid #bcb7ae;color:#3c3935}
     .story-signpost p{width:min(100%,58rem);max-width:none;margin:0;font-family:var(--sans);font-size:.88rem;line-height:1.7}
     .story-signpost strong{display:block;margin-bottom:.35rem;color:#9c2f2a;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase}
+    .history-section{grid-column:1/-1;grid-row:5;margin-top:2.75rem;color:#252321}
+    .history-section h2{margin:0 0 1.35rem;font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.5rem);font-weight:500;line-height:1.15}
+    .history-section p{max-width:60rem;margin:0 0 1.35rem;font-size:1.04rem;line-height:1.85}
+    .population-chart-placeholder{margin:2rem 0 2.25rem;padding:1.5rem;border:1px dashed #9c2f2a;background:#fff;}
+    .population-chart-placeholder figcaption{margin-bottom:1rem;color:#3c3935;font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase}
+    .population-chart-space{min-height:clamp(15rem,34vw,25rem);display:flex;align-items:center;justify-content:center;padding:1.5rem;border:1px solid #e3ded7;background:linear-gradient(135deg,#faf8f4,#f2eee8);color:#777;text-align:center;font-family:var(--sans);font-size:.85rem;line-height:1.6}
     #story-1 .story-lead,#story-1 .story-second{font-size:1.12rem;line-height:1.85}
     #story-1 .story-lead{grid-column:1/-1;margin:0 0 2.5rem}
     #story-1 .chart-slide{grid-column:1;grid-row:2;align-self:start;margin:0;min-width:0}
@@ -52,7 +58,7 @@
     .pa-main-copy p{margin:0 0 1.5rem}.pa-sidebar{align-self:start;padding:1.2rem 0 1.2rem 1.25rem;border-left:3px solid #a9252b;font-family:var(--sans)}.pa-sidebar h2{margin:0 0 .7rem;font-size:.72rem;letter-spacing:.13em;text-transform:uppercase}.pa-sidebar p{margin:0;color:#555;font-size:.9rem;line-height:1.7}
     .chart-slide{width:100%;overflow:hidden}.chart-frame{width:100%;opacity:0;transform:translateX(-110vw);transition:transform 2.4s cubic-bezier(.2,.7,.2,1),opacity 1.8s ease}.chart-slide.is-visible .chart-frame{opacity:1;transform:translateX(0)}.chart-frame iframe{display:block;width:100%;min-width:100%;border:0}
     @keyframes rise-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-    @media(max-width:40rem){.home-page{padding:1.2rem 1rem 2rem}.home-intro{min-height:0;padding:3.25rem .25rem}.home-intro p{font-size:1.05rem;line-height:1.8}.story-list{grid-template-columns:1fr;gap:.85rem}.story-card{min-height:18rem}.cover{min-height:78svh;padding:6rem 1.2rem}#story-1 .cover{background-attachment:scroll}#story-1 .story-body{grid-template-columns:1fr;row-gap:1.5rem;margin-top:-2.6rem;padding:2rem 1.25rem 3rem}#story-1 .story-lead,#story-1 .chart-slide,#story-1 .story-second,.oxford-zionism-definition,.story-signpost{grid-column:1;grid-row:auto}.oxford-zionism-definition{margin-top:1rem;padding:1rem}.story-signpost{margin-top:1.5rem;padding:1rem 0}.pa-masthead{align-items:flex-start;flex-direction:column}.pa-edition{text-align:left}#story-2 .pa-cover{min-height:70svh;padding:7rem 1.25rem 3rem}#story-2 .story-body{grid-template-columns:1fr;gap:1.5rem;padding:2rem 1.25rem 3rem}.pa-sidebar{padding-top:.75rem;padding-bottom:.75rem}}
+    @media(max-width:40rem){.home-page{padding:1.2rem 1rem 2rem}.home-intro{min-height:0;padding:3.25rem .25rem}.home-intro p{font-size:1.05rem;line-height:1.8}.story-list{grid-template-columns:1fr;gap:.85rem}.story-card{min-height:18rem}.cover{min-height:78svh;padding:6rem 1.2rem}#story-1 .cover{background-attachment:scroll}#story-1 .story-body{grid-template-columns:1fr;row-gap:1.5rem;margin-top:-2.6rem;padding:2rem 1.25rem 3rem}#story-1 .story-lead,#story-1 .chart-slide,#story-1 .story-second,.oxford-zionism-definition,.story-signpost,.history-section{grid-column:1;grid-row:auto}.oxford-zionism-definition{margin-top:1rem;padding:1rem}.story-signpost{margin-top:1.5rem;padding:1rem 0}.history-section{margin-top:1rem}.population-chart-placeholder{padding:1rem}.population-chart-space{min-height:15rem}.pa-masthead{align-items:flex-start;flex-direction:column}.pa-edition{text-align:left}#story-2 .pa-cover{min-height:70svh;padding:7rem 1.25rem 3rem}#story-2 .story-body{grid-template-columns:1fr;gap:1.5rem;padding:2rem 1.25rem 3rem}.pa-sidebar{padding-top:.75rem;padding-bottom:.75rem}}
   </style>
 </head>
 <body>
@@ -82,6 +88,18 @@
           <strong>The story ahead</strong>
           <p>This piece traces that history in five stages: Zionism's origins in late nineteenth-century Europe; Britain's wartime promises and the Balfour Declaration; the Mandate years and the Arab Revolt; the withdrawal and partition of 1947–48; and the legacy of that period, from the Nakba to Britain's role today.</p>
         </aside>
+        <section class="history-section" aria-labelledby="roots-heading">
+          <h2 id="roots-heading">Roots: Zionism before Britain (1881 to 1914)</h2>
+          <p>Zionism began not in Palestine or Britain, but in the Russian Empire. After Tsar Alexander II was assassinated in 1881, anti-Jewish riots known as pogroms swept across the region. The following year, Russian Jewish physician Leon Pinsker published ‘Auto-Emancipation.” He argued that Jews could not be secure as a minority in other people's states and needed a homeland of their own. His supporters formed Hovevei Zion, meaning "Lovers of Zion."</p>
+          <p>Between 1882 and 1903, about 25,000 Jews, mostly from Russia and Romania, moved to Ottoman Palestine and established farming colonies. Some estimates are higher, and many later left. They arrived in a land of just under half a million people, overwhelmingly Arab Muslims and Christians. Ottoman authorities tried, with limited success, to restrict Jewish immigration and land purchases.</p>
+          <figure class="population-chart-placeholder" aria-label="Placeholder for Jewish population chart">
+            <figcaption>Chart space · Jewish population changes in Palestine</figcaption>
+            <div class="population-chart-space">Jewish population in Palestine<br>Chart to be inserted here</div>
+          </figure>
+          <p>The movement took on a modern political form under Theodor Herzl, a Vienna-based journalist who had reported on antisemitism during France’s Dreyfus Affair. In 1896, he published ‘Der Judenstaat’ ("The Jewish State”). A year later, he convened the First Zionist Congress in Basel. The Congress founded the Zionist Organization and adopted the Basel Program, calling for a Jewish home in Palestine secured under public law. For this reason, 1897 is often seen as the birth of political Zionism.</p>
+          <p>Palestinian Arabs were already voicing concern. In the decades before 1914, Arab notables and newspapers discussed immigration and land purchases. In 1899, Jerusalem notable Yusuf Diya al-Khalidi warned the chief rabbi of France that the project would meet resistance.</p>
+          <p>Britain's first formal role came in 1903, when Colonial Secretary Joseph Chamberlain offered land in British East Africa, in what is now Kenya. Known as the "Uganda scheme,” the proposal went before the Sixth Zionist Congress, which voted 295 to 178 to send a commission to investigate. After Herzl's death, the movement rejected the proposal in 1905. The episode showed that Palestine was not yet the only option and that Britain was already prepared to consider Jewish settlement within its empire, a theme that would return in 1917. By 1914, Jews made up somewhere between 7 and 14 per cent of Palestine’s population, depending on the source and who was counted. When war broke out, the future of the Ottoman Empire—and Palestine—was about to be decided by others.</p>
+        </section>
       </div>
     </article>
 
