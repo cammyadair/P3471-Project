@@ -6,6 +6,46 @@
   <meta name="theme-color" content="#ffffff">
   <title>Stories | P3471 Final Project</title>
   <style>
+    /* Britain/Zionism red, white and blue accents */
+:root {
+  --britain-blue: #2644d9;
+}
+
+.reading-progress span {
+  background: var(--britain-blue);
+}
+
+#story-1 .cover {
+  border-bottom: 0.5rem solid var(--britain-blue);
+}
+
+#story-1 .story-body {
+  border-top: 4px solid #b32f2f;
+}
+
+#story-1 .oxford-zionism-definition {
+  border-left: 4px solid var(--britain-blue);
+  background: #fff;
+}
+
+#story-1 .story-signpost {
+  border-top: 1px solid var(--britain-blue);
+  border-bottom: 1px solid #b32f2f;
+}
+
+#story-1 .story-signpost strong,
+#story-1 .sources-box summary {
+  color: #b32f2f;
+}
+
+#story-1 .chapter-nav a.is-current {
+  border-left-color: var(--britain-blue);
+  color: var(--britain-blue);
+}
+
+#story-1 .partition-slider input[type="range"] {
+  accent-color: var(--britain-blue);
+}
     :root{--ink:#20201f;--paper:#fff;--muted:#65635f;--accent:#9c2f2a;--serif:Georgia,'Times New Roman',serif;--sans:Arial,Helvetica,sans-serif;--page-width:76rem;--reading-progress:0%;--sticky-offset:3.4rem}
     *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:var(--sticky-offset)}body{margin:0;color:var(--ink);background:var(--paper);font-family:var(--sans)}button{font:inherit}[hidden]{display:none!important}
     .reading-progress{position:fixed;z-index:300;inset:0 0 auto;height:3px;background:#d9d4ce}.reading-progress span{display:block;width:var(--reading-progress);height:100%;background:#a9252b;transition:width .1s linear}
