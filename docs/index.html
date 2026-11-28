@@ -126,7 +126,27 @@ animation: card-rise 0.65s ease both;
 .story-card:nth-child(2) {
 animation-delay: 0.15s;
 }
+.dual-chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  align-items: start;
+}
 
+.dual-chart-grid .chart-slide {
+  margin: 0;
+}
+
+.dual-chart-grid .chart-frame {
+  height: 100%;
+}
+
+@media (max-width: 900px) {
+  .dual-chart-grid {
+    grid-template-columns: 1fr;
+  }
+}
 .story-card--britain {
 --card-image: url("Map%20Outline%20Styling.png");
 background-image: var(--card-image);
@@ -1813,7 +1833,99 @@ But Britain’s policy then turned. Facing war in Europe and wanting calm in the
 
 </div>
 </article>
+<section
+  class="history-section"
+  aria-labelledby="displacement-legacy-heading"
+>
+  <h2 id="displacement-legacy-heading">
+    Displacement and legacy (1948 to the 2020s)
+  </h2>
 
+  <p>
+    Between late 1947 and 1949, some 750,000 Palestinians fled or were
+    expelled from the territory that became Israel. The UN Conciliation
+    Commission counted about 711,000 refugees in 1949, and other estimates
+    range from about 550,000 to more than 800,000. Hundreds of Palestinian
+    villages were depopulated. Palestinians call this the Nakba, meaning
+    "catastrophe."
+  </p>
+
+  <p>
+    Historians still debate how many people left by choice, from fear or by
+    force. Israel has never allowed the refugees to return, arguing that the
+    war was started by the Arab states. Today, more than 5.9 million
+    Palestinians are registered as refugees with the UN agency UNRWA.
+  </p>
+
+  <div class="dual-chart-grid">
+
+    <figure class="chart-slide">
+      <div class="chart-frame">
+        <div
+          class="flourish-embed flourish-chart"
+          data-src="visualisation/31069933">
+        </div>
+      </div>
+    </figure>
+
+    <figure class="chart-slide">
+      <div class="chart-frame">
+        <div
+          class="flourish-embed flourish-chart"
+          data-src="visualisation/31069903">
+        </div>
+      </div>
+    </figure>
+
+  </div>
+
+  <p>
+    Britain remained involved. It joined France and Israel in the 1956
+    Suez operation against Egypt and drafted the UN Security Council
+    resolution that followed the 1967 war, which has shaped diplomacy
+    ever since.
+  </p>
+
+  <p>
+    In 2017, on the Balfour Declaration’s centenary, Prime Minister
+    Theresa May said Britain was "proud of our pioneering role in the
+    creation of the State of Israel" and rejected Palestinian calls for an
+    apology.
+  </p>
+
+  <p>
+    After the attacks of 7 October 2023, successive British governments
+    backed Israel’s right to self-defence. In September 2024, the government
+    suspended about 30 of roughly 350 arms export licences to Israel,
+    citing a clear risk that the items could be used in serious breaches of
+    international humanitarian law.
+  </p>
+
+  <p>
+    It exempted UK-made parts for the F-35 fighter jet programme, which it
+    said were too deeply embedded in a global supply chain to be separated.
+    In June 2025, the High Court rejected a challenge by the Palestinian
+    group Al-Haq to that exemption, saying the decision was for the elected
+    government, not the courts. In September 2025, Britain formally
+    recognised the State of Palestine.
+  </p>
+
+  <p>
+    In September 2026, Foreign Secretary Ed Miliband announced a ban on
+    goods from Israeli settlements and said the government now considers
+    the occupation unlawful. He also said it would refuse licences for arms
+    and other exports that "materially contribute to the occupation."
+  </p>
+
+  <p>
+    Critics say the policy has had little effect so far. Channel 4 News
+    obtained records showing 55 active licences worth about £492 million in
+    July 2026, mostly for combat aircraft parts, and found that exports
+    continued after the 2024 suspension. The government says it has
+    suspended or refused more than 80 licences and that the rest are mostly
+    training items, submarine parts and missile defence equipment.
+  </p>
+</section>
 <article id="story-2" aria-labelledby="story-2-title" hidden>
 <header class="pa-masthead">
 <span class="pa-brand">Pal*stine Act*on</span
